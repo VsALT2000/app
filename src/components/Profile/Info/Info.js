@@ -1,10 +1,10 @@
 import classes from "./Info.module.css";
 
-function Info() {
+function Info(props) {
     return (
         <div className={classes.profile}>
             <div className={classes.profile_avatar}>
-                <img src={"https://i.pinimg.com/564x/66/72/6e/66726ed04f55c72c7ccf056ae25c6928.jpg"}/>
+                <img src={props.logo}/>
             </div>
             <div className={classes.profile_info}>
                 <h3>Wheatley</h3>

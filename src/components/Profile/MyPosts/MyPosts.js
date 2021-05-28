@@ -1,7 +1,10 @@
 import classes from "./MyPosts.module.css";
 import Post from "./Post/Post";
 
-function MyPosts() {
+let postText1 = "Estás usando este software de traducción de forma incorrecta. Por favor, consulta el manual.";
+let postText2 = "So that's just what I was doing. I was just reading... ah... books. So I'm not a moron. Anyway. Just finished the last one. The hardest one. Machiavelli. Do not know what all the fuss was about. Understood it perfectly. Have you read that one?";
+
+function MyPosts(props) {
     return (
         <div className={classes.my_posts}>
             <h4>My posts</h4>
@@ -12,8 +15,8 @@ function MyPosts() {
                 </div>
             </div>
             <div className={classes.posts}>
-                <Post/>
-                <Post/>
+                <Post logo={props.logo} message={postText1} countLikes={"50"}/>
+                <Post logo={props.logo} message={postText2} countLikes={"37"}/>
             </div>
         </div>
     );

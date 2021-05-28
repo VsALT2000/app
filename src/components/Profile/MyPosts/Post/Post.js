@@ -1,14 +1,16 @@
 import classes from "./Post.module.css";
+import Likes from "../../../Sourse/Likes/Likes";
 
-function Post() {
+function Post(props) {
     return (
         <div className={classes.post}>
             <div className={classes.avatar}>
-                <img src={"https://i.pinimg.com/564x/66/72/6e/66726ed04f55c72c7ccf056ae25c6928.jpg"}/>
+                <img src={props.logo}/>
             </div>
             <div className={classes.text}>
-                Some text.
+                {props.message}
             </div>
+            <Likes countLikes={props.countLikes}/>
         </div>
     );
 }
