@@ -1,0 +1,51 @@
+.app-wrapper {
+    display: grid;
+    grid-template-rows: 100px 1fr 100px;
+    height: 100vh;
+}
+
+.header {
+    display: flex;
+    color: white;
+    background: url("https://steamuserimages-a.akamaihd.net/ugc/560941285501338930/0DB98F0B910C039111CCCD673291D73D547D1079/") -1px -13px / 150px;
+}
+
+.body {
+    display: grid;
+    grid-template-columns: 1fr 5fr;
+    grid-gap: 10px;
+    background: url("https://media.moddb.com/cache/images/games/1/65/64112/thumb_620x2000/Tile001.png") -1px 0 / 150px;
+}
+
+.footer {
+    color: white;
+    background: url("https://steamuserimages-a.akamaihd.net/ugc/560941285501338930/0DB98F0B910C039111CCCD673291D73D547D1079/") -1px 0 / 150px;
+}
+
+.container-logo {
+    box-sizing: border-box;
+    padding: 25px;
+    width: 100px;
+    height: 100px;
+    text-align: center;
+}
+
+.logo {
+    height: 50px;
+}
+
+.container-name {
+    display: flex;
+
+}
+
+.app-name {
+    align-self: center;
+    font-size: 50px;
+}
+
+.nav {
+}
+
+.content {
+}
