@@ -1,6 +1,8 @@
+import classes from "./Navigation.module.css";
+
 function Navigation() {
     return (
-        <nav className={"nav"}>
+        <nav className={classes.nav}>
             <div>
                 <a>Profile</a>
             </div>

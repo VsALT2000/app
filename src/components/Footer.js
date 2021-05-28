@@ -1,6 +1,8 @@
+import classes from "./Footer.module.css";
+
 function Footer() {
     return (
-        <div className={"footer"}>
+        <div className={classes.footer}>
             But it won't be long...
         </div>
     );

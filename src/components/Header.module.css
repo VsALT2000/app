@@ -1,0 +1,27 @@
+.header {
+    display: flex;
+    color: white;
+    background: url("https://steamuserimages-a.akamaihd.net/ugc/560941285501338930/0DB98F0B910C039111CCCD673291D73D547D1079/") -1px -13px / 150px;
+}
+
+.container_logo {
+    box-sizing: border-box;
+    padding: 25px;
+    width: 100px;
+    height: 100px;
+    text-align: center;
+}
+
+.logo {
+    height: 50px;
+}
+
+.container_name {
+    display: flex;
+
+}
+
+.app_name {
+    align-self: center;
+    font-size: 50px;
+}

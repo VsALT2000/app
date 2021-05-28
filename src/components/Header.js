@@ -1,11 +1,13 @@
+import classes from "./Header.module.css";
+
 function Header() {
     return (
-        <header className={"header"}>
-            <div className={"container-logo"}>
-                <img className={"logo"} src={"https://i.imgur.com/HWbxMZZ.png"} alt={"logo"}/>
+        <header className={classes.header}>
+            <div className={classes.container_logo}>
+                <img className={classes.logo} src={"https://i.imgur.com/HWbxMZZ.png"} alt={"logo"}/>
             </div>
-            <div className={"container-name"}>
-                <span className={"app-name"}>PORTAL</span>
+            <div className={classes.container_name}>
+                <span className={classes.app_name}>PORTAL</span>
             </div>
         </header>
     );
