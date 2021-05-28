@@ -1,0 +1,21 @@
+.post {
+    display: grid;
+    grid-template-columns: 50px 1fr;
+    gap: 10px;
+    margin: 5px 0;
+}
+
+.avatar {
+    height: 50px;
+    width: 50px;
+}
+
+.avatar img {
+    height: 100%;
+    border-radius: 50%;
+}
+
+.text {
+    max-width: 1000px;
+    word-wrap: break-word;
+}

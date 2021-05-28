@@ -1,8 +1,9 @@
 import './App.css';
-import Header from "./components/Header";
-import Content from "./components/Content";
-import Footer from "./components/Footer";
-import Navigation from "./components/Navigation";
+import Header from "./components/Header/Header";
+import Content from "./components/Content/Content";
+import Footer from "./components/Footer/Footer";
+import Navigation from "./components/Navigation/Navigation";
+import Profile from "./components/Profile/Profile";
 
 function App() {
     return (
@@ -10,7 +11,7 @@ function App() {
             <Header/>
             <div className={"body"}>
                 <Navigation/>
-                <Content/>
+                <Profile />
             </div>
             <Footer className={"footer"}/>
         </div>
