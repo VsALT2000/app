@@ -10,3 +10,16 @@
     grid-gap: 10px;
     background: url("https://media.moddb.com/cache/images/games/1/65/64112/thumb_620x2000/Tile001.png") -1px 0 / 150px;
 }
+
+.content {
+    padding: 10px 10px 10px 0;
+}
+
+.icon {
+    width: 20px;
+    height: 20px;
+    background-repeat: no-repeat;
+    background-size: 100px;
+    background-image: url("https://i.imgur.com/Kv2XAcY.png");
+    background-color: transparent;
+}

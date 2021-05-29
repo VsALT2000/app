@@ -1,6 +1,6 @@
 .post {
     display: grid;
-    grid-template-columns: 50px 1fr 70px;
+    grid-template-columns: 50px 1fr 100px;
     gap: 10px;
     margin: 5px 0;
 }
@@ -18,18 +18,4 @@
 .text {
     max-width: 1000px;
     word-wrap: break-word;
-}
-
-.likes {
-
-}
-
-.count_likes {
-
-}
-
-.likes_container {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
 }

@@ -1,4 +1,25 @@
 .footer {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    padding: 10px;
+    box-sizing: border-box;
+    height: 100px;
     color: white;
     background: url("https://steamuserimages-a.akamaihd.net/ugc/560941285501338930/0DB98F0B910C039111CCCD673291D73D547D1079/") -1px 0 / 150px;
+}
+
+.contacts {
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-columns: 250px 250px;
+    height: 100%;
+}
+
+.contacts a {
+    text-decoration: none;
+    color: white;
+}
+
+.contacts a:hover {
+    color: #ff6a00;
 }

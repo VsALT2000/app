@@ -15,7 +15,7 @@ function MyPosts(props) {
                 </div>
             </div>
             <div className={classes.posts}>
-                <Post logo={props.logo} message={postText1} countLikes={"50"}/>
+                <Post logo={props.logo} message={postText1} countLikes={"500000"}/>
                 <Post logo={props.logo} message={postText2} countLikes={"37"}/>
             </div>
         </div>

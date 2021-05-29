@@ -1,5 +1,5 @@
 import classes from "./Post.module.css";
-import Likes from "../../../Sourse/Likes/Likes";
+import Likes from "./Likes/Likes";
 
 function Post(props) {
     return (
