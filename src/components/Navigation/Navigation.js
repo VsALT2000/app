@@ -5,7 +5,7 @@ function Navigation() {
     return (
         <div className={classes.body}>
             <nav className={classes.nav}>
-                <NavLink to={"/profile"} className={classes.nav_link}>
+                <NavLink to={"/profile"}>
                     <div className={`${classes.icon} ${classes.profile}`}/>
                     <div className={classes.description}>
                         Profile

@@ -9,6 +9,16 @@
     background: #ffffff;
 }
 
-.friends {
+.dialog_items {
+    display: flex;
+    flex-direction: column;
+}
+
+.after {
+    flex: 1 0 auto;
     border-right: 1px solid #bdbdbd;
+}
+
+.messages_items {
+
 }
