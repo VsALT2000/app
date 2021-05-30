@@ -3,8 +3,8 @@ import classes from "./Info.module.css";
 function Info(props) {
     return (
         <div className={classes.profile}>
-            <div className={classes.profile_avatar}>
-                <img src={props.avatar}/>
+            <div className={`${classes.avatar} ${classes.profile_avatar}`}>
+                <img className={classes.image} src={props.avatar}/>
             </div>
             <div className={classes.profile_info}>
                 <h3>Wheatley</h3>

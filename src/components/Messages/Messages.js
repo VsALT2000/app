@@ -1,15 +1,7 @@
 import classes from "./Messages.module.css";
-import Message from "./Message/Message";
+import MessageConstructor from "./MessageConstructor/MessageConstructor";
 import Dialog from "./Dialog/Dialog";
 import {Route} from "react-router-dom";
-
-function MessagesCase(props) {
-    return (
-        <div className={classes.messages_items}>
-            {props.data.map(m => <Message message={m}/>)}
-        </div>
-    );
-}
 
 function Messages(props) {
     return (
@@ -19,8 +11,8 @@ function Messages(props) {
                 <div className={classes.after}/>
             </div>
             {
-                props.data.messageData.map((item, index) =>
-                <Route path={`/messages/${index}`} render={() => <MessagesCase data={item}/>}/>)
+                props.data.messageData.map((item) =>
+                    <Route path={`/messages/${item.id}`} render={() => <MessageConstructor data={item.messages}/>}/>)
             }
         </div>
     );

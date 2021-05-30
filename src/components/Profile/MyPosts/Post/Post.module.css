@@ -6,13 +6,16 @@
 }
 
 .avatar {
+    composes: avatar from "../../../../App.css";
+}
+
+.post_avatar {
     height: 50px;
     width: 50px;
 }
 
-.avatar img {
-    height: 100%;
-    border-radius: 50%;
+.image {
+    composes: image from "../../../../App.css";
 }
 
 .text {

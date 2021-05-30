@@ -6,14 +6,17 @@
     height: 100%;
 }
 
+.avatar {
+    composes: avatar from "../../../App.css";
+}
+
 .profile_avatar {
     height: 100px;
     width: 100px;
 }
 
-.profile_avatar img {
-    height: 100%;
-    border-radius: 50%;
+.image {
+    composes: image from "../../../App.css";
 }
 
 .profile_info h3 {
