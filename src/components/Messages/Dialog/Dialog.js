@@ -3,8 +3,8 @@ import {NavLink} from "react-router-dom";
 
 function Dialog(props) {
     return (
-        <NavLink className={classes.dialog} activeClassName={classes.active} to={`/messages/${props.id}`}>
-            {props.dialogName}
+        <NavLink className={classes.dialog} activeClassName={classes.active} to={`/messages/${props.data.id}`}>
+            {props.data.name}
         </NavLink>
     );
 }

@@ -8,7 +8,7 @@ import {BrowserRouter, Route} from "react-router-dom";
 import Groups from "./components/Groups/Groups";
 import Music from "./components/Music/Music";
 
-function App() {
+function App(props) {
     return (
         <BrowserRouter>
             <div className={"app-wrapper"}>
@@ -16,10 +16,10 @@ function App() {
                 <div className={"body"}>
                     <Navigation/>
                     <div className={"content"}>
-                        <Route path={"/profile"} component={Profile}/>
-                        <Route path={"/messages"} component={Messages}/>
-                        <Route path={"/groups"} component={Groups}/>
-                        <Route path={"/music"} component={Music}/>
+                        <Route path={"/profile"} render={() => <Profile data={props.bigData.profileData}/>}/>
+                        <Route path={"/messages"} render={() => <Messages data={props.bigData.messagesData}/>}/>
+                        <Route path={"/groups"} render={() => <Groups/>}/>
+                        <Route path={"/music"} render={() => <Music/>}/>
                     </div>
                 </div>
                 <Footer className={"footer"}/>
