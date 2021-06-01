@@ -1,12 +1,13 @@
 import classes from "./MessageConstructor.module.css";
 import Message from "./Message/Message";
 import React from "react";
+import {addMessActionCreator} from "../../../redux/state";
 
 function MessageConstructor(props) {
     let newMess = React.createRef();
     let addMess = () => {
         let text = newMess.current.value;
-        props.store.dispatch({type: "ADD-MESS", id: props.data.id, text: text});
+        props.store.dispatch(addMessActionCreator(props.data.id, text));
         newMess.current.value = "";
     }
 

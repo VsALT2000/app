@@ -1,5 +1,5 @@
-let rerenderEntireTree = () => {
-};
+import ProfileReducer from "./profileReducer";
+import MessagesReducer from "./messagesReducer";
 
 const stateData = {
     profileData: {
@@ -108,6 +108,9 @@ const stateData = {
     }
 }
 
+const ADD_POST = "ADD-POST";
+const ADD_MESS = "ADD-MESS";
+
 class Store {
     #state;
 
@@ -123,63 +126,22 @@ class Store {
         this.#state = state;
     }
 
+    #rerenderEntireTree = () => {
+    };
+
+    rerender(observer) {
+        this.#rerenderEntireTree = observer;
+    }
+
     dispatch(action) {
-        switch (action.type) {
-            case "ADD-POST":
-                let newPost = {
-                    text: action.text,
-                    countLikes: 0
-                }
-
-                this.state.profileData.postsData.push(newPost);
-                rerenderEntireTree(this);
-                break;
-            case "ADD-MESS":
-                let newMess = {
-                    isYouMess: true,
-                    text: action.text
-                }
-
-                this.state.messagesData.messageData.forEach(m => {
-                    if (m.id === action.id) {
-                        m.messages.push(newMess);
-                    }
-                });
-                rerenderEntireTree(this);
-                break;
-            default:
-                throw new Error("action type error");
-        }
+        this.state.profileData = ProfileReducer(this.state.profileData, action);
+        this.state.messagesData = MessagesReducer(this.state.messagesData, action);
+        this.#rerenderEntireTree(this);
     }
-
-    /*addPost(text) {
-        let newPost = {
-            text: text,
-            countLikes: 0
-        }
-
-        this.state.profileData.postsData.push(newPost);
-        rerenderEntireTree(this);
-    }
-
-    addMess(id, text) {
-        let newMess = {
-            isYouMess: true,
-            text: text
-        }
-
-        this.state.messagesData.messageData.forEach(m => {
-            if (m.id === id) {
-                m.messages.push(newMess);
-            }
-        });
-        rerenderEntireTree(this);
-    }*/
 }
 
-export const rerender = (observer) => {
-    rerenderEntireTree = observer;
-}
+export const addPostActionCreator = (text) => ({type: ADD_POST, text: text});
+export const addMessActionCreator = (id, text) => ({type: ADD_MESS, id: id, text: text});
 
 let store = new Store(stateData);
 export default store;
