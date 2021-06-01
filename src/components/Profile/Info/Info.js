@@ -4,7 +4,7 @@ function Info(props) {
     return (
         <div className={classes.profile}>
             <div className={`${classes.avatar} ${classes.profile_avatar}`}>
-                <img className={classes.image} src={props.avatar}/>
+                <img className={classes.image} src={props.avatar} alt={"avatar"}/>
             </div>
             <div className={classes.profile_info}>
                 <h3>Wheatley</h3>

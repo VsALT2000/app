@@ -6,11 +6,13 @@ function Profile(props) {
     return (
         <div className={classes.container}>
             <div className={classes.header}>
-                <img src={"https://i.imgur.com/4D8dt7C.png"}/>
+                <img src={"https://i.imgur.com/4D8dt7C.png"} alt={"header"}/>
             </div>
             <div className={classes.content}>
-                <Info avatar={props.data.avatar}/>
-                <MyPosts avatar={props.data.avatar} data={props.data.postsData}/>
+                <Info avatar={props.store.state.profileData.avatar}/>
+                <MyPosts avatar={props.store.state.profileData.avatar}
+                         data={props.store.state.profileData.postsData}
+                         store={props.store}/>
             </div>
         </div>
     );

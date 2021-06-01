@@ -16,8 +16,8 @@ function App(props) {
                 <div className={"body"}>
                     <Navigation/>
                     <div className={"content"}>
-                        <Route path={"/profile"} render={() => <Profile data={props.bigData.profileData}/>}/>
-                        <Route path={"/messages"} render={() => <Messages data={props.bigData.messagesData}/>}/>
+                        <Route path={"/profile"} render={() => <Profile store={props.store}/>}/>
+                        <Route path={"/messages"} render={() => <Messages store={props.store}/>}/>
                         <Route path={"/groups"} render={() => <Groups/>}/>
                         <Route path={"/music"} render={() => <Music/>}/>
                     </div>

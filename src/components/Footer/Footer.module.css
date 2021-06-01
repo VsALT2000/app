@@ -11,15 +11,22 @@
 .contacts {
     display: grid;
     grid-template-rows: 1fr 1fr 1fr;
-    grid-template-columns: 250px 250px;
+    grid-template-columns: 1fr 1fr;
     height: 100%;
+    max-width: 500px;
 }
 
-.contacts a {
+.contacts_container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+.contacts_container a, .contacts_container div {
     text-decoration: none;
     color: white;
 }
 
-.contacts a:hover {
+.contacts a:hover, .contacts_container div:hover {
     color: #ff6a00;
 }

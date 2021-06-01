@@ -1,11 +1,19 @@
 import classes from "./MessageConstructor.module.css";
 import Message from "./Message/Message";
+import React from "react";
 
 function MessageConstructor(props) {
+    let newMess = React.createRef();
+    let addMess = () => {
+        let text = newMess.current.value;
+        props.store.dispatch({type: "ADD-MESS", id: props.data.id, text: text});
+        newMess.current.value = "";
+    }
+
     return (
         <div className={classes.messages}>
             <div className={classes.messages_items}>
-                {props.data.map(m => {
+                {props.data.messages.map(m => {
                     if (m.isYouMess) {
                         return (
                             <div className={classes.you_message}>
@@ -24,9 +32,11 @@ function MessageConstructor(props) {
                 })}
             </div>
             <div className={classes.new_message}>
-                <textarea className={classes.textarea}/>
+                <textarea className={classes.textarea}
+                          ref={newMess}
+                          placeholder={"Type you message..."}/>
                 <div className={classes.button_container}>
-                    <button className={classes.send_button}>Send</button>
+                    <button className={classes.send_button} onClick={addMess}>Send</button>
                 </div>
             </div>
         </div>

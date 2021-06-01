@@ -26,7 +26,7 @@
 }
 
 .after {
-    min-width: 100px;
+    min-width: 50px;
 }
 
 .new_message {
@@ -36,10 +36,7 @@
 }
 
 .textarea {
-    box-sizing: border-box;
-    width: 100%;
-    height: 55px;
-    resize: none;
+    composes: textarea from "../../../App.css";
 }
 
 .button_container {

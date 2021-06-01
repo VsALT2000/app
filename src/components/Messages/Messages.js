@@ -7,12 +7,13 @@ function Messages(props) {
     return (
         <div className={classes.container}>
             <div className={classes.dialog_items}>
-                {props.data.dialogData.map(d => <Dialog data={d}/>)}
+                {props.store.state.messagesData.dialogData.map(d => <Dialog data={d}/>)}
                 <div className={classes.after}/>
             </div>
             {
-                props.data.messageData.map((item) =>
-                    <Route path={`/messages/${item.id}`} render={() => <MessageConstructor data={item.messages}/>}/>)
+                props.store.state.messagesData.messageData.map((item) =>
+                    <Route path={`/messages/${item.id}`}
+                           render={() => <MessageConstructor data={item} store={props.store}/>}/>)
             }
         </div>
     );
