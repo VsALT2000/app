@@ -3,17 +3,17 @@ import MessageConstructor from "./MessageConstructor/MessageConstructor";
 import Dialog from "./Dialog/Dialog";
 import {Route} from "react-router-dom";
 
-function Messages(props) {
+const Messages = (props) => {
     return (
         <div className={classes.container}>
             <div className={classes.dialog_items}>
-                {props.store.state.messagesData.dialogData.map(d => <Dialog data={d}/>)}
+                {props.state.dialogData.map(d => <Dialog data={d}/>)}
                 <div className={classes.after}/>
             </div>
             {
-                props.store.state.messagesData.messageData.map((item) =>
+                props.state.messageData.map((item) =>
                     <Route path={`/messages/${item.id}`}
-                           render={() => <MessageConstructor data={item} store={props.store}/>}/>)
+                           render={() => <MessageConstructor state={item} store={props.store} dispatch={props.dispatch}/>}/>)
             }
         </div>
     );

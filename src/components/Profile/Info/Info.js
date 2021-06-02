@@ -1,6 +1,6 @@
 import classes from "./Info.module.css";
 
-function Info(props) {
+const Info = (props) => {
     return (
         <div className={classes.profile}>
             <div className={`${classes.avatar} ${classes.profile_avatar}`}>

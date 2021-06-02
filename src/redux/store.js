@@ -140,8 +140,5 @@ class Store {
     }
 }
 
-export const addPostActionCreator = (text) => ({type: ADD_POST, text: text});
-export const addMessActionCreator = (id, text) => ({type: ADD_MESS, id: id, text: text});
-
 let store = new Store(stateData);
 export default store;

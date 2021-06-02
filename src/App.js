@@ -8,7 +8,7 @@ import {BrowserRouter, Route} from "react-router-dom";
 import Groups from "./components/Groups/Groups";
 import Music from "./components/Music/Music";
 
-function App(props) {
+const App = (props) => {
     return (
         <BrowserRouter>
             <div className={"app-wrapper"}>
@@ -16,8 +16,12 @@ function App(props) {
                 <div className={"body"}>
                     <Navigation/>
                     <div className={"content"}>
-                        <Route path={"/profile"} render={() => <Profile store={props.store}/>}/>
-                        <Route path={"/messages"} render={() => <Messages store={props.store}/>}/>
+                        <Route path={"/profile"} render={() => <Profile store={props.store}
+                                                                        dispatch={props.dispatch}
+                                                                        state={props.state.profileData}/>}/>
+                        <Route path={"/messages"} render={() => <Messages store={props.store}
+                                                                          dispatch={props.dispatch}
+                                                                          state={props.state.messagesData}/>}/>
                         <Route path={"/groups"} render={() => <Groups/>}/>
                         <Route path={"/music"} render={() => <Music/>}/>
                     </div>

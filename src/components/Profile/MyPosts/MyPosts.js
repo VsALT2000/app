@@ -1,15 +1,15 @@
 import classes from "./MyPosts.module.css";
 import Post from "./Post/Post";
 import React from "react";
-import {addPostActionCreator} from "../../../redux/state";
+import {addPostActionCreator} from "../../../redux/profileReducer";
 
 
 const MyPosts = (props) => {
-    let posts = props.data.map(p => <Post avatar={props.avatar} data={p}/>);
+    let posts = props.state.postsData.map(p => <Post avatar={props.state.avatar} data={p}/>);
     let newPost = React.createRef();
     let addPost = () => {
         let text = newPost.current.value;
-        props.store.dispatch(addPostActionCreator(text));
+        props.dispatch(addPostActionCreator(text));
         newPost.current.value = "";
     }
 
