@@ -7,7 +7,7 @@
 }
 
 .avatar {
-    composes: avatar from "../../../App.css";
+    composes: avatar from "../../../App.module.css";
 }
 
 .profile_avatar {
@@ -16,9 +16,19 @@
 }
 
 .image {
-    composes: image from "../../../App.css";
+    composes: image from "../../../App.module.css";
 }
 
 .profile_info h3 {
     margin: 0 0 15px 0;
+}
+
+.light_theme {
+}
+
+.dark_theme {
+}
+
+div.dark_theme {
+    color: white;
 }

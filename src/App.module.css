@@ -1,4 +1,4 @@
-.app-wrapper {
+.app_wrapper {
     display: grid;
     grid-template-rows: 100px 1fr 100px;
     height: 100vh;
@@ -8,8 +8,13 @@
     display: grid;
     grid-template-columns: 1fr 5fr;
     grid-gap: 10px;
-    background: url("https://media.moddb.com/cache/images/games/1/65/64112/thumb_620x2000/Tile001.png") -1px 0 / 150px;
+    background: #d9d9d9;
 }
+
+.dark_theme {
+    filter: invert(1);
+}
+
 
 .content {
     padding: 10px 10px 10px 0;
@@ -48,4 +53,19 @@
     height: 55px;
     resize: none;
     outline: none;
+}
+
+.dark_theme img {
+    filter: invert(1);
+}
+
+.dark_theme .footer {
+    filter: invert(1);
+}
+
+.dark_theme .header {
+    filter: invert(1);
+}
+
+.light_theme {
 }

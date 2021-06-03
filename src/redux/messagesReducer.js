@@ -90,20 +90,22 @@ let initialState = {
 }
 
 const MessagesReducer = (state = initialState, action) => {
+    let stateCopy = {...state};
+    stateCopy.messageData = [...state.messageData];
     if (action.type === ADD_MESS) {
         let newMess = {
             isYouMess: true,
             text: action.text
         }
 
-        state.messageData.forEach(m => {
+        stateCopy.messageData.forEach(m => {
             if (m.id === action.id) {
                 m.messages.push(newMess);
             }
         });
     }
 
-    return state;
+    return stateCopy;
 }
 
 export const addMessActionCreator = (id, text) => ({type: ADD_MESS, id: id, text: text});

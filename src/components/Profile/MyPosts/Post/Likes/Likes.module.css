@@ -19,7 +19,7 @@
 }
 
 .icon {
-    composes: icon from "../../../../../App.css";
+    composes: icon from "../../../../../App.module.css";
 }
 
 .count_likes {

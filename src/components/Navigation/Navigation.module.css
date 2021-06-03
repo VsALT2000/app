@@ -11,7 +11,7 @@
     border-radius: 10px;
     padding: 5px;
     height: 100%;
-    background: white;
+    background: #ffffff;
 }
 
 .nav a {
@@ -25,11 +25,11 @@
 }
 
 .nav a:hover {
-    background: #00adef;
+    background: #0096FF;
 }
 
 .icon {
-    composes: icon from "../../App.css";
+    composes: icon from "../../App.module.css";
 }
 
 .description {

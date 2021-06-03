@@ -1,32 +1,31 @@
-import './App.css';
-import Header from "./components/Header/Header";
-import Messages from "./components/Messages/Messages";
+import classes from "./App.module.css";
 import Footer from "./components/Footer/Footer";
 import Navigation from "./components/Navigation/Navigation";
 import Profile from "./components/Profile/Profile";
 import {BrowserRouter, Route} from "react-router-dom";
 import Groups from "./components/Groups/Groups";
 import Music from "./components/Music/Music";
+import HeaderContainer from "./components/Header/HeaderContainer";
+import MessagesContainer from "./components/Messages/MessagesContainer";
 
 const App = (props) => {
+    let temp = props.state.theme.theme === "light_theme" ? classes.light_theme : classes.dark_theme;
     return (
         <BrowserRouter>
-            <div className={"app-wrapper"}>
-                <Header/>
-                <div className={"body"}>
+            <div className={`${temp} ${classes.app_wrapper}`}>
+                <HeaderContainer/>
+                <div className={classes.body}>
                     <Navigation/>
-                    <div className={"content"}>
-                        <Route path={"/profile"} render={() => <Profile store={props.store}
-                                                                        dispatch={props.dispatch}
-                                                                        state={props.state.profileData}/>}/>
-                        <Route path={"/messages"} render={() => <Messages store={props.store}
+                    <div className={classes.content}>
+                        <Route path={"/profile"} render={() => <Profile avatar={props.state.profileData.avatar}/>}/>
+                        <Route path={"/messages"} render={() => <MessagesContainer store={props.store}
                                                                           dispatch={props.dispatch}
                                                                           state={props.state.messagesData}/>}/>
                         <Route path={"/groups"} render={() => <Groups/>}/>
                         <Route path={"/music"} render={() => <Music/>}/>
                     </div>
                 </div>
-                <Footer className={"footer"}/>
+                <Footer/>
             </div>
         </BrowserRouter>
     );

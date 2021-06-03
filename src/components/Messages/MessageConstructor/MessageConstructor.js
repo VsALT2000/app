@@ -1,20 +1,19 @@
 import classes from "./MessageConstructor.module.css";
 import Message from "./Message/Message";
 import React from "react";
-import {addMessActionCreator} from "../../../redux/messagesReducer";
 
 const MessageConstructor = (props) => {
     let newMess = React.createRef();
     let addMess = () => {
         let text = newMess.current.value;
-        props.dispatch(addMessActionCreator(props.state.id, text));
+        props.addMess(props.messageUser.id, text);
         newMess.current.value = "";
     }
 
     return (
         <div className={classes.messages}>
             <div className={classes.messages_items}>
-                {props.state.messages.map(m => {
+                {props.messageUser.messages.map(m => {
                     if (m.isYouMess) {
                         return (
                             <div className={classes.you_message}>

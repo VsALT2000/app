@@ -1,6 +1,6 @@
 import classes from "./Profile.module.css";
 import Info from "./Info/Info";
-import MyPosts from "./MyPosts/MyPosts";
+import MyPostsContainer from "./MyPosts/MyPostsContainer";
 
 const Profile = (props) => {
     return (
@@ -9,10 +9,8 @@ const Profile = (props) => {
                 <img src={"https://i.imgur.com/4D8dt7C.png"} alt={"header"}/>
             </div>
             <div className={classes.content}>
-                <Info avatar={props.state.avatar}/>
-                <MyPosts state={props.state}
-                         store={props.store}
-                         dispatch={props.dispatch}/>
+                <Info avatar={props.avatar}/>
+                <MyPostsContainer/>
             </div>
         </div>
     );

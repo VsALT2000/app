@@ -12,7 +12,7 @@
 }
 
 .textarea {
-    composes: textarea from "../../../App.css";
+    composes: textarea from "../../../App.module.css";
 }
 
 .button_container {
@@ -27,4 +27,14 @@
 
 .posts {
     /* Зачем, а главное зачем? */
+}
+
+.light_theme {
+}
+
+.dark_theme {
+}
+
+div.dark_theme {
+    color: white;
 }

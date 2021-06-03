@@ -9,7 +9,7 @@
 }
 
 .avatar {
-    composes: avatar from "../../../../App.css";
+    composes: avatar from "../../../../App.module.css";
 }
 
 .post_avatar {
@@ -18,7 +18,7 @@
 }
 
 .image {
-    composes: image from "../../../../App.css";
+    composes: image from "../../../../App.module.css";
 }
 
 .text {

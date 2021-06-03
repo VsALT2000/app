@@ -24,7 +24,7 @@
 }
 
 .avatar {
-    composes: avatar from "../../../App.css";
+    composes: avatar from "../../../App.module.css";
 }
 
 .dialog_avatar {
@@ -33,7 +33,7 @@
 }
 
 .image {
-    composes: image from "../../../App.css";
+    composes: image from "../../../App.module.css";
 }
 
 .dialogName_container {

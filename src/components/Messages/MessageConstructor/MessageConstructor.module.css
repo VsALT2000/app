@@ -36,7 +36,7 @@
 }
 
 .textarea {
-    composes: textarea from "../../../App.css";
+    composes: textarea from "../../../App.module.css";
 }
 
 .button_container {
