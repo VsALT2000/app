@@ -13,6 +13,7 @@
     display: grid;
     grid-template-rows: 1fr 1fr 1fr;
     grid-template-columns: 1fr 1fr;
+    column-gap: 10px;
     height: 100%;
     max-width: 500px;
 }

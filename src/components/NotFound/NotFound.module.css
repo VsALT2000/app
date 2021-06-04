@@ -1,0 +1,22 @@
+.container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    box-sizing: border-box;
+    border: 1px solid #bdbdbd;
+    border-radius: 10px;
+    height: 100%;
+    width: 100%;
+    background: #ffffff;
+}
+
+.content {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+}
+
+.content img {
+    height: 150px;
+    filter: invert(1);
+}

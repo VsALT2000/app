@@ -19,13 +19,12 @@ let initialState = {
 
 const ProfileReducer = (state = initialState, action) => {
     let stateCopy = {...state};
-    stateCopy.postsData = [...state.postsData];
     if (action.type === ADD_POST) {
         let newPost = {
             text: action.text,
             countLikes: 0
         }
-        stateCopy.postsData.push(newPost);
+        stateCopy.postsData = [...state.postsData, newPost];
     }
 
     return stateCopy;

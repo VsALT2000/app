@@ -6,7 +6,6 @@ const MyPosts = (props) => {
     let posts = props.postsData.map(p => <Post avatar={props.avatar} data={p}/>);
     let newPost = React.createRef();
     const onAddPost = () => {
-        debugger;
         let text = newPost.current.value;
         props.addPost(text);
         newPost.current.value = "";

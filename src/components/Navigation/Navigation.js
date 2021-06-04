@@ -17,10 +17,10 @@ function Navigation() {
                         Messages
                     </div>
                 </NavLink>
-                <NavLink to={"/groups"}>
+                <NavLink to={"/users"}>
                     <div className={`${classes.icon} ${classes.groups}`}/>
                     <div className={classes.description}>
-                        <span>Groups</span>
+                        <span>Users</span>
                     </div>
                 </NavLink>
                 <NavLink to={"/music"}>

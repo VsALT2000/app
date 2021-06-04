@@ -5,11 +5,15 @@ const initialState = {
 }
 
 const ThemeReducer = (state = initialState, action) => {
-    if (action.type === CHANGE_THEME) {
-        state.theme = state.theme === "light_theme" ? "dark_theme" : "light_theme";
+    switch (action.type) {
+        case CHANGE_THEME:
+            return {
+                ...state,
+                theme: state.theme === "light_theme" ? "dark_theme" : "light_theme"
+            };
+        default:
+            return state;
     }
-
-    return state;
 }
 
 export const changeThemeActionCreator = () => ({type: CHANGE_THEME});

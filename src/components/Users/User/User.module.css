@@ -1,9 +1,14 @@
-.profile {
+.user {
     display: grid;
     grid-template-columns: 100px 1fr;
     gap: 10px;
-    padding: 5px;
     height: 100%;
+    box-sizing: border-box;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
 }
 
 .avatar {
@@ -19,6 +24,17 @@
     composes: image from "../../../App.module.css";
 }
 
-.profile_info h3 {
-    margin: 0 0 15px 0;
+.profile_info {
+    min-width: 200px;
 }
+
+.profile_info h3 {
+    margin: 0 0 10px 0;
+}
+
+.action_container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+

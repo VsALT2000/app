@@ -1,4 +1,5 @@
 import classes from "./Header.module.css";
+import logo from "../../assets/logo.png";
 
 function Header(props) {
     let onChangeTheme = () => {
@@ -9,7 +10,7 @@ function Header(props) {
         <header className={classes.header}>
             <div className={classes.container_logo}>
                 <button className={classes.button} onClick={onChangeTheme}>
-                    <img className={classes.logo} src={"https://i.imgur.com/Xg4AIv1.png"} alt={"logo"}/>
+                    <img className={classes.logo} src={logo} alt={"logo"}/>
                 </button>
             </div>
             <div className={classes.container_name}>
