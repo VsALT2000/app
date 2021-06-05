@@ -17,6 +17,7 @@
 }
 
 .content img {
+    margin: 10px;
     height: 150px;
     filter: invert(1);
 }

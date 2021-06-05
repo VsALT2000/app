@@ -12,7 +12,7 @@ const Profile = (props) => {
                 </div>
             </div>
             <div className={classes.content}>
-                <Info avatar={props.avatar}/>
+                <Info avatar={props.avatar} name={props.name} aboutMe={props.aboutMe}/>
                 <MyPostsContainer/>
             </div>
         </div>

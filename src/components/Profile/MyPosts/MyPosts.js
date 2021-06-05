@@ -3,7 +3,7 @@ import Post from "./Post/Post";
 import React from "react";
 
 const MyPosts = (props) => {
-    let posts = props.postsData.map(p => <Post avatar={props.avatar} data={p}/>);
+    let posts = props.postsData.map(p => <Post avatar={props.photos.small} data={p}/>);
     let newPost = React.createRef();
     const onAddPost = () => {
         let text = newPost.current.value;

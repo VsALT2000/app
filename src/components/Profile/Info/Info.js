@@ -7,10 +7,10 @@ const Info = (props) => {
                 <img className={classes.image} src={props.avatar} alt={"avatar"}/>
             </div>
             <div className={classes.profile_info}>
-                <h3>Wheatley</h3>
-                <div>Date of Birth: 2 January</div>
-                <div>City: Space</div>
-                <div>Education: None</div>
+                <h3>{props.name}</h3>
+                <div>About me: {props.aboutMe}</div>
+                <div>City: in progress</div>
+                <div>Education: in progress</div>
             </div>
         </div>
     );

@@ -1,4 +1,4 @@
-import {addMessActionCreator} from "../../redux/messagesReducer";
+import {addMess} from "../../redux/messagesReducer";
 import {connect} from "react-redux";
 import Messages from "./Messages";
 
@@ -9,14 +9,8 @@ let mapStateToProps = (state) => {
     }
 }
 
-let mapDispatchToProps = (dispatch) => {
-    return {
-        addMess: (id, text) => {
-            dispatch(addMessActionCreator(id, text));
-        }
-    }
-}
-
-const MessagesContainer = connect(mapStateToProps, mapDispatchToProps) (Messages)
+const MessagesContainer = connect(mapStateToProps, {
+    addMess
+})(Messages)
 
 export default MessagesContainer;

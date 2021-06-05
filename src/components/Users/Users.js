@@ -1,61 +1,40 @@
 import classes from "./Users.module.css";
 import React from "react";
 import User from "./User/User";
-import * as axios from "axios";
 
-class Users extends React.Component {
-    getUsers = () => {
-        if (this.props.items.length === 0) {
-            axios.get("https://social-network.samuraijs.com/api/1.0/users").then(response => {
-                this.props.setUsers(response.data.items);
-            });
+const Users = (props) => {
+    let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
+    let pages = [];
+    if (pagesCount !== 0) {
+        pages.push(1);
+        let min = Math.max(props.currentPage - 5, 2);
+        let max = Math.min(props.currentPage + 5, pagesCount);
+        for (let i = min; i < max; i++) {
+            pages.push(i);
         }
+        pages.push(pagesCount);
     }
-    render() {
-        this.getUsers();
-        let count = 0;
-        let users = this.props.items.map(user => {
-            if (count < 4) {
-                count++;
-                return <User user={user} follow={this.props.follow} unfollow={this.props.unfollow}/>
-            }
-        })
-        return (
-            <div className={classes.container}>
-                <div className={classes.users}>
-                    {users}
-                </div>
-                <div className={classes.button}>
-                    show more
-                </div>
-            </div>
-        )
-    }
-}
-
-/*const Users = (props) => {
-    if (props.items.length === 0) {
-        axios.get("https://social-network.samuraijs.com/api/1.0/users").then(response => {
-            props.setUsers(response.data.items);
-        });
-    }
-    let count = 0;
-    let users = props.items.map(user => {
-        if (count < 4) {
-            count++;
-            return <User user={user} follow={props.follow} unfollow={props.unfollow}/>
-        }
-    });
     return (
         <div className={classes.container}>
             <div className={classes.users}>
-                {users}
+                {
+                    props.items.map(user => {
+                        return <User user={user} follow={props.follow} unfollow={props.unfollow}/>
+                    })
+                }
             </div>
-            <div className={classes.button}>
-                show more
+            <div className={classes.pages}>
+                {pages.map(p => {
+                    return (
+                        <div className={props.currentPage === p && classes.selectedPage}
+                             onClick={() => {props.onPageChanged(p)}}>
+                            <span>{p}</span>
+                        </div>
+                    )
+                })}
             </div>
         </div>
-    );
-}*/
+    )
+}
 
 export default Users;

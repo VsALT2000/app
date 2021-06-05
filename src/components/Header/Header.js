@@ -1,7 +1,7 @@
 import classes from "./Header.module.css";
 import logo from "../../assets/logo.png";
 
-function Header(props) {
+const Header = (props) => {
     let onChangeTheme = () => {
         props.changeTheme();
     }

@@ -1,7 +1,15 @@
-const ADD_POST = "ADD-POST";
+const ADD_POST = "ADD_POST";
+const TOGGLE_IS_FETCHING = "TOGGLE_IS_FETCHING";
+const SET_PROFILE = "SET_PROFILE";
+const SET_PHOTOS = "SET_PHOTOS";
 
 let initialState = {
-    avatar: "https://i.pinimg.com/564x/66/72/6e/66726ed04f55c72c7ccf056ae25c6928.jpg",
+    photos: {
+        small: null,
+        large: null
+    },
+    userId: 2, //17524,
+    isFetching: true,
     postsData:
         [
             {
@@ -18,18 +26,23 @@ let initialState = {
 }
 
 const ProfileReducer = (state = initialState, action) => {
-    let stateCopy = {...state};
-    if (action.type === ADD_POST) {
-        let newPost = {
-            text: action.text,
-            countLikes: 0
-        }
-        stateCopy.postsData = [...state.postsData, newPost];
+    switch (action.type) {
+        case ADD_POST:
+            return {...state, postsData: [...state.postsData, {text: action.text, countLikes: 0}]};
+        case TOGGLE_IS_FETCHING:
+            return {...state, isFetching: action.isFetching};
+        case SET_PROFILE:
+            return {...action.profile, isFetching: state.isFetching, postsData: state.postsData};
+        case SET_PHOTOS:
+            return {...state, photos: {large: action.large, small: action.small}};
+        default:
+            return state;
     }
-
-    return stateCopy;
 }
 
-export const addPostActionCreator = (text) => ({type: ADD_POST, text: text});
+export const addPost = (text) => ({type: ADD_POST, text: text});
+export const toggleIsFetching = (isFetching) => ({type: TOGGLE_IS_FETCHING, isFetching});
+export const setProfile = (profile) => ({type: SET_PROFILE, profile});
+export const setPhotos = (large, small) => ({type: SET_PHOTOS, large, small});
 
 export default ProfileReducer;

@@ -59,6 +59,10 @@
     filter: invert(0);
 }
 
+.dark_theme .afterLoader {
+    filter: invert(0);
+}
+
 .dark_theme img {
     filter: invert(1);
 }
@@ -72,4 +76,10 @@
 }
 
 .light_theme {
+}
+
+.container_load {
+    position: relative;
+    height: 100%;
+    width: 100%;
 }

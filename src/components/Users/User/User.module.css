@@ -25,11 +25,20 @@
 }
 
 .profile_info {
-    min-width: 200px;
+    min-width: 150px;
 }
 
 .profile_info h3 {
     margin: 0 0 10px 0;
+}
+
+.profile_info a {
+    text-decoration: none;
+    color: black;
+}
+
+.profile_info a:hover {
+    color: #ff6a00;
 }
 
 .action_container {

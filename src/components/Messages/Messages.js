@@ -1,7 +1,15 @@
 import classes from "./Messages.module.css";
 import Dialog from "./Dialog/Dialog";
-import {Route} from "react-router-dom";
+import {Redirect, Route, Switch} from "react-router-dom";
 import MessageConstructor from "./MessageConstructor/MessageConstructor";
+
+const EmptyMessageWindow = () => {
+    return (
+        <div className={classes.emptyMessageWindow}>
+            Choose the dialog.
+        </div>
+    )
+}
 
 const Messages = (props) => {
     return (
@@ -10,11 +18,19 @@ const Messages = (props) => {
                 {props.dialogData.map(d => <Dialog data={d}/>)}
                 <div className={classes.after}/>
             </div>
-            {
-                props.messageData.map((messageUser) =>
-                    <Route path={`/messages/${messageUser.id}`}
-                           render={() => <MessageConstructor addMess={props.addMess} messageUser={messageUser}/>}/>)
-            }
+            <Switch>
+                <Route exact path={"/messages/"} render={() => <EmptyMessageWindow/>}/>
+                {
+                    props.messageData.map((messageUser) =>
+                        <Route exact path={`/messages/${messageUser.id}`}
+                               render={() => <MessageConstructor addMess={props.addMess}
+                                                                 messageUser={messageUser}/>}/>)
+
+                }
+                <Route path={"/"}>
+                    <Redirect to={"/404"}/>
+                </Route>
+            </Switch>
         </div>
     );
 }

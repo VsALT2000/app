@@ -16,6 +16,6 @@ const ThemeReducer = (state = initialState, action) => {
     }
 }
 
-export const changeThemeActionCreator = () => ({type: CHANGE_THEME});
+export const changeTheme = () => ({type: CHANGE_THEME});
 
 export default ThemeReducer;

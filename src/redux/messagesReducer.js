@@ -108,6 +108,6 @@ const MessagesReducer = (state = initialState, action) => {
     return stateCopy;
 }
 
-export const addMessActionCreator = (id, text) => ({type: ADD_MESS, id: id, text: text});
+export const addMess = (id, text) => ({type: ADD_MESS, id: id, text: text});
 
 export default MessagesReducer;

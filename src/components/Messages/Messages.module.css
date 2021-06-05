@@ -18,3 +18,9 @@
     flex: 1 0 auto;
     border-right: 1px solid #bdbdbd;
 }
+
+.emptyMessageWindow {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
