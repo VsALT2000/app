@@ -23,7 +23,6 @@ const App = (props) => {
                         <Route path={"/users"} render={() => <UsersContainer/>}/>
                         <Route path={"/404"} render={() => <NotFound/>}/>
                         {/*<Route path={"/music/"} render={() => <Music/>}/>*/}
-
                         <Route exact path={"/"}>
                             <Redirect to={"/profile/17524"}/>
                         </Route>
