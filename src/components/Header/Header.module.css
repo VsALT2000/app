@@ -1,5 +1,6 @@
 .header {
     display: flex;
+    justify-content: flex-start;
     color: white;
     background: url("https://steamuserimages-a.akamaihd.net/ugc/560941285501338930/0DB98F0B910C039111CCCD673291D73D547D1079/") -1px -13px / 150px;
     composes: header from "../../App.module.css";
@@ -17,12 +18,18 @@
     height: 50px;
 }
 
+.container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
 .container_name {
     display: flex;
+    align-items: center;
 }
 
 .app_name {
-    align-self: center;
     font-size: 50px;
 }
 
@@ -31,5 +38,33 @@
     border: 0;
     outline: none;
     background: transparent;
+}
+
+.container_auth {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+}
+
+.avatar {
+    composes: avatar from "../../App.module.css";
+}
+
+.post_avatar {
+    height: 50px;
+    width: 50px;
+}
+
+.image {
+    composes: image from "../../App.module.css";
+}
+
+.container_auth a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.container_auth a:hover {
+    color: #ff6a00;
 }
 

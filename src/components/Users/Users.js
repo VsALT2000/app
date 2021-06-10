@@ -7,8 +7,8 @@ const Users = (props) => {
     let pages = [];
     if (pagesCount !== 0) {
         pages.push(1);
-        let min = Math.max(props.currentPage - 5, 2);
-        let max = Math.min(props.currentPage + 5, pagesCount);
+        let min = Math.max(props.currentPage - 3, 2);
+        let max = Math.min(props.currentPage + 3, pagesCount);
         for (let i = min; i < max; i++) {
             pages.push(i);
         }
@@ -19,7 +19,10 @@ const Users = (props) => {
             <div className={classes.users}>
                 {
                     props.items.map(user => {
-                        return <User user={user} follow={props.follow} unfollow={props.unfollow}/>
+                        return <User user={user}
+                                     postFollowTC={props.postFollowTC}
+                                     deleteFollowTC={props.deleteFollowTC}
+                                     followingInProgress={props.followingInProgress}/>
                     })
                 }
             </div>

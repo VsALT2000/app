@@ -1,27 +1,20 @@
 import Profile from "./Profile";
 import React from "react";
-import * as axios from "axios";
 import {connect} from "react-redux";
-import {toggleIsFetching, setProfile, setPhotos} from "../../redux/profileReducer";
+import {setProfileTC} from "../../redux/profileReducer";
 import classes from "../Profile/ProfileContainer.module.css";
 import Preloader from "../Preloader/Preloader";
-import avatar from "../../assets/avatar.png"
+import {withRouter} from "react-router-dom";
+import avatar from "../../assets/avatar.png";
+import withAuthRedirect from "../../hoc/AuthRedirect";
+import {compose} from "redux";
 
 class ProfileContainer extends React.Component {
     componentDidMount() {
-        this.props.toggleIsFetching(true);
-        let id = window.location.pathname.split("/")[2];
-        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${id}`).then(response => {
-            this.props.toggleIsFetching(false);
-            this.props.setProfile(response.data);
-            if (this.props.photos.large === null) {
-                this.props.setPhotos(avatar, avatar);
-            }
-        });
+        this.props.setProfileTC(this.props.match.params.userId || 17524);
     }
 
     render() {
-
         return (
             <div className={classes.container_load}>
                 {
@@ -29,7 +22,7 @@ class ProfileContainer extends React.Component {
                         ? <Preloader isFetching={this.props.isFetching}/>
                         : null
                 }
-                <Profile avatar={this.props.photos.large}
+                <Profile avatar={this.props.photos.large || avatar}
                          name={this.props.fullName}
                          aboutMe={this.props.aboutMe}/>
             </div>
@@ -47,4 +40,4 @@ let mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps,{toggleIsFetching, setProfile, setPhotos}) (ProfileContainer);
+export default compose(connect(mapStateToProps, {setProfileTC}), withAuthRedirect, withRouter) (ProfileContainer)

@@ -8,33 +8,59 @@ import HeaderContainer from "./components/Header/HeaderContainer";
 import MessagesContainer from "./components/Messages/MessagesContainer";
 import UsersContainer from "./components/Users/UsersContainer";
 import NotFound from "./components/NotFound/NotFound";
+import Login from "./components/Login/Login";
+import {connect} from "react-redux";
+import {getAuthMeTC} from "./redux/authReducer";
+import React from "react";
 
-const App = (props) => {
-    let temp = props.state.theme.theme === "light_theme" ? classes.light_theme : classes.dark_theme;
-    return (
-        <div className={`${temp} ${classes.app_wrapper}`}>
-            <HeaderContainer/>
-            <div className={classes.body}>
-                <Navigation/>
-                <div className={classes.content}>
-                    <Switch>
-                        <Route path={"/profile"} render={() => <ProfileContainer/>}/>
-                        <Route path={"/messages"} render={() => <MessagesContainer/>}/>
-                        <Route path={"/users"} render={() => <UsersContainer/>}/>
-                        <Route path={"/404"} render={() => <NotFound/>}/>
-                        {/*<Route path={"/music/"} render={() => <Music/>}/>*/}
-                        <Route exact path={"/"}>
-                            <Redirect to={"/profile/17524"}/>
-                        </Route>
-                        <Route path={"/"}>
-                            <Redirect to={"/404"}/>
-                        </Route>
-                    </Switch>
-                </div>
-            </div>
-            <Footer/>
-        </div>
-    );
+class App extends React.Component {
+    componentDidMount() {
+        this.props.getAuthMeTC();
+    }
+
+    render() {
+        let theme = this.props.theme === "light_theme" ? classes.light_theme : classes.dark_theme;
+        return (
+            <Switch>
+                <Route path={"/login"} render={() => <Login/>}/>
+                <Route exact path={"/"}>
+                    <Redirect to={"/users"}/>
+                </Route>
+                <Route path={"/"}>
+                    <div className={`${theme} ${classes.app_wrapper}`}>
+                        <HeaderContainer/>
+                        <div className={classes.body}>
+                            <Navigation/>
+                            <div className={classes.content}>
+                                <Switch>
+                                    <Route path={"/profile/:userId?"} render={() => <ProfileContainer/>}/>
+                                    <Route path={"/messages"} render={() => <MessagesContainer/>}/>
+                                    <Route path={"/users"} render={() => <UsersContainer/>}/>
+                                    <Route path={"/404"} render={() => <NotFound/>}/>
+                                    {/*<Route path={"/music/"} render={() => <Music/>}/>*/}
+
+                                    <Route path={"/"}>
+                                        <Redirect to={"/404"}/>
+                                    </Route>
+                                </Switch>
+                            </div>
+                        </div>
+                        <Footer/>
+                    </div>
+                </Route>
+            </Switch>
+        );
+    }
 }
 
-export default App;
+let mapStateToProps = (state) => {
+    return {
+        theme: state.theme.theme,
+        isAuth: state.auth.isAuth,
+        email: state.auth.email,
+        login: state.auth.login,
+        id: state.auth.id,
+    }
+}
+
+export default connect(mapStateToProps, {getAuthMeTC})(App);

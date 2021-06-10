@@ -19,8 +19,10 @@ const User = (props) => {
                 <div className={classes.action_container}>
                     {
                         props.user.followed
-                        ? <button onClick={() => {props.unfollow(props.user.id)}}>Unfollow</button>
-                        : <button onClick={() => {props.follow(props.user.id)}}>Follow</button>
+                        ? <button disabled={props.followingInProgress.some(id => id === props.user.id)}
+                                  onClick={() => {props.deleteFollowTC(props.user.id)}}>Unfollow</button>
+                        : <button disabled={props.followingInProgress.some(id => id === props.user.id)}
+                                  onClick={() => {props.postFollowTC(props.user.id)}}>Follow</button>
                     }
                 </div>
             </div>

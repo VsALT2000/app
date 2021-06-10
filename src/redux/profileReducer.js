@@ -1,7 +1,8 @@
+import {profileAPI} from "../api/api";
+
 const ADD_POST = "ADD_POST";
 const TOGGLE_IS_FETCHING = "TOGGLE_IS_FETCHING";
 const SET_PROFILE = "SET_PROFILE";
-const SET_PHOTOS = "SET_PHOTOS";
 
 let initialState = {
     photos: {
@@ -9,7 +10,7 @@ let initialState = {
         large: null
     },
     userId: 2, //17524,
-    isFetching: true,
+    isFetching: false,
     postsData:
         [
             {
@@ -33,16 +34,23 @@ const ProfileReducer = (state = initialState, action) => {
             return {...state, isFetching: action.isFetching};
         case SET_PROFILE:
             return {...action.profile, isFetching: state.isFetching, postsData: state.postsData};
-        case SET_PHOTOS:
-            return {...state, photos: {large: action.large, small: action.small}};
         default:
             return state;
     }
 }
 
 export const addPost = (text) => ({type: ADD_POST, text: text});
-export const toggleIsFetching = (isFetching) => ({type: TOGGLE_IS_FETCHING, isFetching});
-export const setProfile = (profile) => ({type: SET_PROFILE, profile});
-export const setPhotos = (large, small) => ({type: SET_PHOTOS, large, small});
+const toggleIsFetching = (isFetching) => ({type: TOGGLE_IS_FETCHING, isFetching});
+const setProfile = (profile) => ({type: SET_PROFILE, profile});
+
+export const setProfileTC = (id) => {
+    return (dispatch) => {
+        dispatch(toggleIsFetching(true));
+        profileAPI.getProfile(id).then(data => {
+            dispatch(toggleIsFetching(false));
+            dispatch(setProfile(data));
+        });
+    }
+}
 
 export default ProfileReducer;

@@ -2,6 +2,7 @@ import classes from "./Profile.module.css";
 import Info from "./Info/Info";
 import MyPostsContainer from "./MyPosts/MyPostsContainer";
 import headerPhoto from "../../assets/Aperture.png";
+import React from "react";
 
 const Profile = (props) => {
     return (
