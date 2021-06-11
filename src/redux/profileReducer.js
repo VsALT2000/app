@@ -10,7 +10,6 @@ let initialState = {
         small: null,
         large: null
     },
-
     userId: 17524,
     isFetching: false,
     status: "",
