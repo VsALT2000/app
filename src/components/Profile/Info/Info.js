@@ -1,4 +1,5 @@
 import classes from "./Info.module.css";
+import AboutMe from "./AboutMe/AboutMe";
 
 const Info = (props) => {
     return (
@@ -8,7 +9,7 @@ const Info = (props) => {
             </div>
             <div className={classes.profile_info}>
                 <h3>{props.name}</h3>
-                <div>About me: {props.aboutMe}</div>
+                <AboutMe/>
                 <div>City: in progress</div>
                 <div>Education: in progress</div>
             </div>

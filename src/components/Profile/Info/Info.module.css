@@ -19,6 +19,17 @@
     composes: image from "../../../App.module.css";
 }
 
-.profile_info h3 {
-    margin: 0 0 15px 0;
+.profile_info {
+    box-sizing: border-box;
+    width: 100%;
 }
+
+.profile_info > div {
+    height: 25px;
+}
+
+.profile_info h3 {
+    margin: 0 0 5px 0;
+}
+
+

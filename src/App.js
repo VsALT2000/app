@@ -24,13 +24,13 @@ class App extends React.Component {
             <Switch>
                 <Route path={"/login"} render={() => <Login/>}/>
                 <Route exact path={"/"}>
-                    <Redirect to={"/users"}/>
+                    <Redirect to={"/login"}/>
                 </Route>
                 <Route path={"/"}>
                     <div className={`${theme} ${classes.app_wrapper}`}>
                         <HeaderContainer/>
                         <div className={classes.body}>
-                            <Navigation/>
+                            <Navigation id={this.props.id}/>
                             <div className={classes.content}>
                                 <Switch>
                                     <Route path={"/profile/:userId?"} render={() => <ProfileContainer/>}/>

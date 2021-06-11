@@ -31,7 +31,7 @@
 
 .content {
     display: grid;
-    grid-template-rows: 150px 1fr;
+    grid-template-rows: 120px 1fr;
     box-sizing: border-box;
     border: 1px solid #bdbdbd;
     border-top: 0;

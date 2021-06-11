@@ -3,6 +3,7 @@ import Info from "./Info/Info";
 import MyPostsContainer from "./MyPosts/MyPostsContainer";
 import headerPhoto from "../../assets/Aperture.png";
 import React from "react";
+import avatar from "../../assets/avatar.png";
 
 const Profile = (props) => {
     return (
@@ -13,7 +14,7 @@ const Profile = (props) => {
                 </div>
             </div>
             <div className={classes.content}>
-                <Info avatar={props.avatar} name={props.name} aboutMe={props.aboutMe}/>
+                <Info avatar={props.photos.large || avatar} name={props.fullName}/>
                 <MyPostsContainer/>
             </div>
         </div>

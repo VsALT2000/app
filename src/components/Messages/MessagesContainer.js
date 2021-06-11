@@ -1,7 +1,7 @@
 import {addMess} from "../../redux/messagesReducer";
 import {connect} from "react-redux";
 import Messages from "./Messages";
-import withAuthRedirect from "../../hoc/AuthRedirect";
+import withLoginRedirect from "../../hoc/LoginRedirect";
 import {compose} from "redux";
 
 let mapStateToProps = (state) => {
@@ -12,4 +12,4 @@ let mapStateToProps = (state) => {
     }
 }
 
-export default compose(connect(mapStateToProps, {addMess}), withAuthRedirect) (Messages)
+export default compose(connect(mapStateToProps, {addMess}), withLoginRedirect) (Messages)

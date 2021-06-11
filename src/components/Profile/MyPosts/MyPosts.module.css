@@ -12,6 +12,7 @@
 }
 
 .textarea {
+    height: 55px;
     composes: textarea from "../../../App.module.css";
 }
 
