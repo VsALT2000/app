@@ -3,7 +3,6 @@ import Footer from "./components/Footer/Footer";
 import Navigation from "./components/Navigation/Navigation";
 import ProfileContainer from "./components/Profile/ProfileContainer";
 import {Redirect, Route, Switch} from "react-router-dom";
-/*import Music from "./components/Music/Music";*/
 import HeaderContainer from "./components/Header/HeaderContainer";
 import MessagesContainer from "./components/Messages/MessagesContainer";
 import UsersContainer from "./components/Users/UsersContainer";
