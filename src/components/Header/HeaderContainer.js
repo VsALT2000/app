@@ -2,6 +2,7 @@ import {changeTheme} from "../../redux/themeReducer";
 import Header from "./Header";
 import {connect} from "react-redux";
 import React from "react";
+import {deleteAuthLoginTC} from "../../redux/authReducer";
 
 class HeaderContainer extends React.Component {
     render() {
@@ -20,4 +21,4 @@ let mapStateToProps = (state) => {
 }
 
 
-export default connect(mapStateToProps, {changeTheme})(HeaderContainer);
+export default connect(mapStateToProps, {changeTheme, deleteAuthLoginTC})(HeaderContainer);

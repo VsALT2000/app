@@ -40,6 +40,9 @@ let mapStateToProps = (state) => {
         currentPage: state.usersData.currentPage,
         isFetching: state.usersData.isFetching,
         followingInProgress: state.usersData.followingInProgress,
+
+        isAuth: state.auth.isAuth,
+        gettingData: state.auth.gettingData,
     }
 }
 

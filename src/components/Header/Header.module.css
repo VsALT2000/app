@@ -3,7 +3,7 @@
     justify-content: flex-start;
     color: white;
     background: url("https://steamuserimages-a.akamaihd.net/ugc/560941285501338930/0DB98F0B910C039111CCCD673291D73D547D1079/") -1px -13px / 150px;
-    composes: header from "../../App.module.css";
+    composes: invertOne from "../../App.module.css";
 }
 
 .container_logo {
@@ -57,6 +57,7 @@
 
 .image {
     composes: image from "../../App.module.css";
+    composes: invertZero from "../../App.module.css";
 }
 
 .container_auth a {

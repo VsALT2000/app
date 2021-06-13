@@ -1,18 +1,31 @@
 import {connect} from "react-redux";
-import {getAuthMeTC} from "../../redux/authReducer";
+import {getAuthMeTC, postAuthLoginTC} from "../../redux/authReducer";
 import {compose} from "redux";
+import classes from "./Login.module.css";
 import withAuthRedirect from "../../hoc/AuthRedirect";
 import React from "react";
+import LoginReduxForm from "./LoginForm";
 
 class Login extends React.Component {
     componentDidMount() {
         this.props.getAuthMeTC();
     }
 
+    onSubmit = (formData) => {
+        this.props.postAuthLoginTC(formData);
+    }
+
     render() {
         return (
-            <div>
-                login
+            <div className={classes.container}>
+                <div className={classes.pseudo}/>
+                <div className={classes.container_login}>
+                    <div className={classes.content}>
+                        <h1>Sign In</h1>
+                        <LoginReduxForm onSubmit={this.onSubmit}/>
+                    </div>
+                </div>
+                <div className={classes.pseudo}/>
             </div>
         );
     }
@@ -28,4 +41,4 @@ let mapStateToProps = (state) => {
     }
 }
 
-export default compose(connect(mapStateToProps, {getAuthMeTC}), withAuthRedirect) (Login);
+export default compose(connect(mapStateToProps, {getAuthMeTC, postAuthLoginTC}), withAuthRedirect)(Login);

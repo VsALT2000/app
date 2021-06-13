@@ -5,7 +5,7 @@ const TOGGLE_IS_FETCHING = "TOGGLE_IS_FETCHING";
 const SET_PROFILE = "SET_PROFILE";
 const SET_STATUS = "SET_STATUS";
 
-let initialState = {
+let initialState = { //TODO: сделать разделение на user и my
     photos: {
         small: null,
         large: null

@@ -10,8 +10,6 @@ import {compose} from "redux";
 
 class ProfileContainer extends React.Component {
     componentDidMount() {
-        console.log(this.props.match.params.userId);
-        console.log(this.props.myId);
         this.props.setProfileTC(this.props.match.params.userId || this.props.myId);
         this.props.getProfileStatusTC(this.props.match.params.userId || this.props.myId);
     }

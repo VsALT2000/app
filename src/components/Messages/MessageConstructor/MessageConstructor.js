@@ -1,13 +1,15 @@
 import classes from "./MessageConstructor.module.css";
 import Message from "./Message/Message";
 import React from "react";
+import AddMessageForm from "./MessageForm";
 
 const MessageConstructor = (props) => {
-    let newMess = React.createRef();
-    let addMess = () => {
-        let text = newMess.current.value;
-        props.addMess(props.messageUser.id, text);
-        newMess.current.value = "";
+    const onSubmit = (mess) => {
+        let text = mess.newMessageBody;
+        if (text && text.replace(/\s+/g, '')) {
+            props.addMess(props.messageUser.id, text);
+            mess.newMessageBody = "";
+        }
     }
 
     return (
@@ -31,14 +33,7 @@ const MessageConstructor = (props) => {
                     }
                 })}
             </div>
-            <div className={classes.new_message}>
-                <textarea className={classes.textarea}
-                          ref={newMess}
-                          placeholder={"Type you message..."}/>
-                <div className={classes.button_container}>
-                    <button className={classes.send_button} onClick={addMess}>Send</button>
-                </div>
-            </div>
+            <AddMessageForm onSubmit={onSubmit}/>
         </div>
     );
 }

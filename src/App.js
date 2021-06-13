@@ -60,6 +60,8 @@ let mapStateToProps = (state) => {
         email: state.auth.email,
         login: state.auth.login,
         id: state.auth.id,
+
+        gettingData: state.auth.gettingData,
     }
 }
 

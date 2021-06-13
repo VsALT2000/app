@@ -21,7 +21,13 @@ const Header = (props) => {
                     <div className={`${classes.avatar} ${classes.post_avatar} `}>
                         <img className={classes.image} src={props.avatar} alt={"avatar"}/>
                     </div>
-                    { props.isAuth ? props.login : <NavLink to={"/login"}>Кто я</NavLink>}
+                    {
+                        props.isAuth
+                        ? <div onClick={() => {props.deleteAuthLoginTC()}}>
+                                {props.login}
+                        </div>
+                        : <NavLink to={"/login"}>Кто я</NavLink>
+                    }
                 </div>
             </div>
         </header>

@@ -45,6 +45,16 @@
     border-radius: 50%;
 }
 
+.input_text {
+    box-sizing: border-box;
+    border-radius: 5px;
+    border: 1px solid #bdbdbd;
+    width: 100%;
+    outline: none;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+    'Droid Sans', 'Helvetica Neue', sans-serif;
+}
+
 .textarea {
     box-sizing: border-box;
     border-radius: 5px;
@@ -52,25 +62,15 @@
     width: 100%;
     resize: none;
     outline: none;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+    'Droid Sans', 'Helvetica Neue', sans-serif;
 }
 
-.dark_theme .logo {
+.dark_theme .invertZero {
     filter: invert(0);
 }
 
-.dark_theme .afterLoader {
-    filter: invert(0);
-}
-
-.dark_theme img {
-    filter: invert(1);
-}
-
-.dark_theme .footer {
-    filter: invert(1);
-}
-
-.dark_theme .header {
+.dark_theme img, .dark_theme .invertOne {
     filter: invert(1);
 }
 

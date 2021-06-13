@@ -19,7 +19,7 @@
 
 .logo {
     height: 70px;
-    composes: logo from "../../App.module.css";
+    composes: invertZero from "../../App.module.css";
 }
 
 .container {
