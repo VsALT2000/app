@@ -1,5 +1,5 @@
 import classes from "./Preloader.module.css";
-import load from "../../assets/load.png";
+import load from "../../../assets/load.png";
 import React from "react";
 
 const Preloader = () => {

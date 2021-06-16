@@ -3,15 +3,16 @@ import React from "react";
 import {connect} from "react-redux";
 import {getProfileStatusTC, setProfileStatusTC, setProfileTC} from "../../redux/profileReducer";
 import classes from "../Profile/ProfileContainer.module.css";
-import Preloader from "../Preloader/Preloader";
+import Preloader from "../Common/Preloader/Preloader";
 import {withRouter} from "react-router-dom";
-//import withLoginRedirect from "../../hoc/LoginRedirect";
+import withProfileRedirect from "../../hoc/ProfileRedirect";
 import {compose} from "redux";
 
 class ProfileContainer extends React.Component {
     componentDidMount() {
-        this.props.setProfileTC(this.props.match.params.userId || this.props.myId);
-        this.props.getProfileStatusTC(this.props.match.params.userId || this.props.myId);
+        let id = this.props.match.params.userId || this.props.myId;
+        this.props.setProfileTC(id);
+        this.props.getProfileStatusTC(id);
     }
 
     render() {
@@ -38,4 +39,8 @@ let mapStateToProps = (state) => {
     }
 }
 
-export default compose(connect(mapStateToProps, {setProfileTC, getProfileStatusTC, setProfileStatusTC})/*, withLoginRedirect*/, withRouter) (ProfileContainer)
+export default compose(connect(mapStateToProps, {
+    setProfileTC,
+    getProfileStatusTC,
+    setProfileStatusTC
+}), withRouter, withProfileRedirect)(ProfileContainer)

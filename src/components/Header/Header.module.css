@@ -41,18 +41,55 @@
 }
 
 .container_auth {
+    position: relative;
+    margin-right: 20px;
+    border: 0;
+    outline: none;
+    background: transparent;
+    font-size: 18px;
+}
+
+.container_auth>button {
+    padding: 0;
+    border: 0;
+    height: 100%;
+    width: 100%;
+    color: white;
+    outline: none;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+    'Droid Sans', 'Helvetica Neue', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    font-size: 20px;
+    background: transparent;
+}
+
+.exit_mode {
+    background-color: #383736;
+    color: #ffffff !important;
+}
+
+.content {
     display: flex;
     align-items: center;
-    margin-right: 20px;
+    box-sizing: border-box;
+    padding: 0 20px;
+    height: 100%;
+    width: 100%;
+}
+
+.container_auth>button:hover {
+    background-color: #383736;
+}
+
+.content:hover {
+    color: #ff6a00;
 }
 
 .avatar {
-    composes: avatar from "../../App.module.css";
-}
-
-.post_avatar {
+    margin-left: 10px;
     height: 50px;
     width: 50px;
+    composes: avatar from "../../App.module.css";
 }
 
 .image {
@@ -66,6 +103,19 @@
 }
 
 .container_auth a:hover {
+    color: #ff6a00;
+}
+
+.exit_container {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: 100%;
+    background-color: #383736;
+    z-index: 100;
+}
+
+.exit_container>div:hover {
     color: #ff6a00;
 }
 

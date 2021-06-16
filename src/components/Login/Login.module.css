@@ -30,14 +30,15 @@
     margin: 0;
 }
 
-form {
+.form {
     display: grid;
     gap: 5px;
     margin-top: 5px;
 }
 
-form div {
+.form > div {
     min-width: 125px;
+    max-width: 162px;
 }
 
 .input_text {
@@ -48,4 +49,8 @@ form div {
 .button {
     display: flex;
     justify-content: space-around;
+}
+
+.error_log {
+    color: red;
 }

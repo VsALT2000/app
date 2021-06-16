@@ -2,10 +2,11 @@ import classes from "./Navigation.module.css";
 import {NavLink} from "react-router-dom";
 
 function Navigation(props) {
+    const profileLink = props.id ? `/profile/${props.id}` : "/profile"
     return (
         <div className={classes.body}>
             <nav className={classes.nav}>
-                <NavLink to={`/profile/${props.id}`}>
+                <NavLink to={profileLink}>
                     <div className={`${classes.icon} ${classes.profile}`}/>
                     <div className={classes.description}>
                         Profile

@@ -5,9 +5,8 @@ import {
 import React from "react";
 import Users from "./Users";
 import classes from "./UsersContainer.module.css";
-import Preloader from "../Preloader/Preloader";
+import Preloader from "../Common/Preloader/Preloader";
 import {compose} from "redux";
-import withLoginRedirect from "../../hoc/LoginRedirect";
 
 class UsersContainer extends React.Component {
     componentDidMount() {
@@ -40,9 +39,7 @@ let mapStateToProps = (state) => {
         currentPage: state.usersData.currentPage,
         isFetching: state.usersData.isFetching,
         followingInProgress: state.usersData.followingInProgress,
-
         isAuth: state.auth.isAuth,
-        gettingData: state.auth.gettingData,
     }
 }
 
@@ -50,4 +47,4 @@ export default compose(connect(mapStateToProps,
     {
         setUsersTC, updateUsersTC,
         postFollowTC, deleteFollowTC
-    }), withLoginRedirect) (UsersContainer);
+    })) (UsersContainer);

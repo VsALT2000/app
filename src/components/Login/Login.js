@@ -12,7 +12,9 @@ class Login extends React.Component {
     }
 
     onSubmit = (formData) => {
+        console.log(formData)
         this.props.postAuthLoginTC(formData);
+        this.props.getAuthMeTC();
     }
 
     render() {
@@ -33,7 +35,6 @@ class Login extends React.Component {
 
 let mapStateToProps = (state) => {
     return {
-        theme: state.theme.theme,
         isAuth: state.auth.isAuth,
         email: state.auth.email,
         login: state.auth.login,

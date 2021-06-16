@@ -10,7 +10,7 @@ let initialState = { //TODO: сделать разделение на user и my
         small: null,
         large: null
     },
-    userId: 17524,
+    userId: null,
     isFetching: false,
     status: "",
     postsData:
@@ -48,31 +48,25 @@ const toggleIsFetching = (isFetching) => ({type: TOGGLE_IS_FETCHING, isFetching}
 const setProfile = (profile) => ({type: SET_PROFILE, profile});
 const setStatus = (status) => ({type: SET_STATUS, status});
 
-export const setProfileTC = (id) => {
-    return (dispatch) => {
-        dispatch(toggleIsFetching(true));
-        profileAPI.getProfile(id).then(data => {
-            dispatch(toggleIsFetching(false));
-            dispatch(setProfile(data));
-        });
-    }
+export const setProfileTC = (id) => (dispatch) => {
+    dispatch(toggleIsFetching(true));
+    profileAPI.getProfile(id).then(data => {
+        dispatch(toggleIsFetching(false));
+        dispatch(setProfile(data));
+    });
 }
 
-export const getProfileStatusTC = (id) => {
-    return (dispatch) => {
-        profileAPI.getStatus(id).then(data => {
-            dispatch(setStatus(data));
-        });
-    }
+export const getProfileStatusTC = (id) => (dispatch) => {
+    profileAPI.getStatus(id).then(data => {
+        dispatch(setStatus(data));
+    });
 }
 
-export const setProfileStatusTC = (status) => {
-    return (dispatch) => {
-        profileAPI.putStatus(status).then(data => {
-            if (data.resultCode === 0)
-                dispatch(setStatus(status));
-        });
-    }
+export const setProfileStatusTC = (status) => (dispatch) => {
+    profileAPI.putStatus(status).then(data => {
+        if (data.resultCode === 0)
+            dispatch(setStatus(status));
+    });
 }
 
 export default ProfileReducer;

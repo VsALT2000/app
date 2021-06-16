@@ -1,4 +1,4 @@
-import {changeTheme} from "../../redux/themeReducer";
+import {changeTheme} from "../../redux/appReducer";
 import Header from "./Header";
 import {connect} from "react-redux";
 import React from "react";
@@ -14,9 +14,10 @@ class HeaderContainer extends React.Component {
 
 let mapStateToProps = (state) => {
     return {
-        theme: state.theme.theme,
+        theme: state.app.theme,
         isAuth: state.auth.isAuth,
         login: state.auth.login,
+        avatar: state.auth.photos.small,
     }
 }
 

@@ -7,9 +7,10 @@ const mapStateToProps = (state) => ({isAuth: state.auth.isAuth});
 export default (Component) => {
     class RedirectComponent extends React.Component {
         render() {
-            return this.props.isAuth ? <Redirect to={`/profile/${this.props.id}`}/> : <Component {...this.props}/>;
+            let id = this.props.match.params.userId || this.props.myId;
+            return !id ? <Redirect to={"/login"}/> : <Component {...this.props}/>;
         }
     }
 
-    return connect(mapStateToProps) (RedirectComponent);
+    return connect(mapStateToProps)(RedirectComponent);
 }
