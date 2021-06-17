@@ -2,6 +2,10 @@ import classes from "./Messages.module.css";
 import Dialog from "./Dialog/Dialog";
 import {Redirect, Route, Switch} from "react-router-dom";
 import MessageConstructor from "./MessageConstructor/MessageConstructor";
+import {compose} from "redux";
+import {connect} from "react-redux";
+import {addMess} from "../../redux/messagesReducer";
+import withLoginRedirect from "../../hoc/LoginRedirect";
 
 const EmptyMessageWindow = () => {
     return (
@@ -25,7 +29,6 @@ const Messages = (props) => {
                         <Route exact path={`/messages/${messageUser.id}`}
                                render={() => <MessageConstructor addMess={props.addMess}
                                                                  messageUser={messageUser}/>}/>)
-
                 }
                 <Route path={"/"}>
                     <Redirect to={"/404"}/>
@@ -35,4 +38,12 @@ const Messages = (props) => {
     );
 }
 
-export default Messages;
+let mapStateToProps = (state) => {
+    return {
+        dialogData: state.messagesData.dialogData,
+        messageData: state.messagesData.messageData,
+        isAuth: state.auth.isAuth,
+    }
+}
+
+export default compose(connect(mapStateToProps, {addMess}), withLoginRedirect) (Messages);

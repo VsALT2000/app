@@ -20,7 +20,7 @@ const LoginForm = (props) => {
             <div>
                 <Field component={CheckboxTC("rememberMe", "remember me")} name={"rememberMe"} type={"checkbox"}/>
             </div>
-            <div className={classes.SummaryError}>
+            <div>
                 <div className={classes.error_log}>{props.error}</div>
             </div>
             <div className={classes.button}>

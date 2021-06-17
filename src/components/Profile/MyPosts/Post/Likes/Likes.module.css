@@ -22,6 +22,10 @@
     composes: icon from "../../../../../App.module.css";
 }
 
+.liking {
+    filter: drop-shadow(0 0 5px #0096FF);
+}
+
 .count_likes {
     margin-left: 5px;
 }

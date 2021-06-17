@@ -1,10 +1,10 @@
 import classes from "./App.module.css";
 import Footer from "./components/Footer/Footer";
 import Navigation from "./components/Navigation/Navigation";
-import ProfileContainer from "./components/Profile/ProfileContainer";
+import ProfileContainer from "./components/Profile/Profile";
 import {Redirect, Route, Switch} from "react-router-dom";
-import HeaderContainer from "./components/Header/HeaderContainer";
-import MessagesContainer from "./components/Messages/MessagesContainer";
+import HeaderContainer from "./components/Header/Header";
+import Messages from "./components/Messages/Messages";
 import UsersContainer from "./components/Users/UsersContainer";
 import NotFound from "./components/NotFound/NotFound";
 import Login from "./components/Login/Login";
@@ -42,7 +42,7 @@ class App extends React.Component {
                                     <Route path={"/profile/null"}>
                                         <Redirect to={"/login"}/>
                                     </Route>
-                                    <Route path={"/messages"} render={() => <MessagesContainer/>}/>
+                                    <Route path={"/messages"} render={() => <Messages/>}/>
                                     <Route exact path={"/users"} render={() => <UsersContainer/>}/>
                                     <Route path={"/404"} render={() => <NotFound/>}/>
                                     {/*<Route path={"/music/"} render={() => <Music/>}/>*/}

@@ -90,22 +90,16 @@ let initialState = {
 }
 
 const MessagesReducer = (state = initialState, action) => {
-    let stateCopy = {...state};
-    stateCopy.messageData = [...state.messageData];
-    if (action.type === ADD_MESS) {
-        let newMess = {
-            isYouMess: true,
-            text: action.text
-        }
-
-        stateCopy.messageData.forEach(m => {
-            if (m.id === action.id) {
-                m.messages.push(newMess);
-            }
-        });
+    switch (action.type) {
+        case ADD_MESS:
+            state.messageData.forEach(m => {
+                if (m.id === action.id)
+                    m.messages.push({isYouMess: true, text: action.text});
+            });
+            return {...state, messageData: [...state.messageData]};
+        default:
+            return state;
     }
-
-    return stateCopy;
 }
 
 export const addMess = (id, text) => ({type: ADD_MESS, id: id, text: text});

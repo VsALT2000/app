@@ -12,7 +12,6 @@ class Login extends React.Component {
     }
 
     onSubmit = (formData) => {
-        console.log(formData)
         this.props.postAuthLoginTC(formData);
         this.props.getAuthMeTC();
     }

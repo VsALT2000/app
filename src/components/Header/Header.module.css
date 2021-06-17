@@ -64,7 +64,6 @@
 }
 
 .exit_mode {
-    background-color: #383736;
     color: #ffffff !important;
 }
 
@@ -75,10 +74,6 @@
     padding: 0 20px;
     height: 100%;
     width: 100%;
-}
-
-.container_auth>button:hover {
-    background-color: #383736;
 }
 
 .content:hover {
@@ -110,8 +105,10 @@
     position: absolute;
     top: 100%;
     right: 0;
-    width: 100%;
-    background-color: #383736;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    width: 100px;
+    background-color: #3b3b3b;
     z-index: 100;
 }
 

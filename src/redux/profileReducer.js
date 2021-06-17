@@ -5,7 +5,7 @@ const TOGGLE_IS_FETCHING = "TOGGLE_IS_FETCHING";
 const SET_PROFILE = "SET_PROFILE";
 const SET_STATUS = "SET_STATUS";
 
-let initialState = { //TODO: сделать разделение на user и my
+let initialState = {
     photos: {
         small: null,
         large: null
@@ -17,13 +17,15 @@ let initialState = { //TODO: сделать разделение на user и my
         [
             {
                 text: "Estás usando este software de traducción de forma incorrecta. Por favor, consulta el manual.",
-                countLikes: 500000
+                countLikes: 500000,
+                isLiking: false,
             },
             {
                 text: "So that's just what I was doing. I was just reading... ah... books. So I'm not a moron. " +
                     "Anyway. Just finished the last one. The hardest one. Machiavelli. Do not know what all the " +
                     "fuss was about. Understood it perfectly. Have you read that one?",
-                countLikes: 37
+                countLikes: 37,
+                isLiking: true,
             },
         ]
 }
@@ -31,7 +33,7 @@ let initialState = { //TODO: сделать разделение на user и my
 const ProfileReducer = (state = initialState, action) => {
     switch (action.type) {
         case ADD_POST:
-            return {...state, postsData: [...state.postsData, {text: action.text, countLikes: 0}]};
+            return {...state, postsData: [...state.postsData, {text: action.text, countLikes: 0, isLiking: false}]};
         case TOGGLE_IS_FETCHING:
             return {...state, isFetching: action.isFetching};
         case SET_PROFILE:

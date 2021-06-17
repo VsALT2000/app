@@ -23,7 +23,7 @@ const initializedSuccess = () => ({type: INITIALIZED_SUCCESS});
 export const changeTheme = () => ({type: CHANGE_THEME});
 
 export const initializeApp = () => (dispatch) => {
-    let authMe = dispatch(getAuthMeTC());
+    const authMe = dispatch(getAuthMeTC());
     Promise.all([authMe]).then(() => dispatch(initializedSuccess()));
 }
 

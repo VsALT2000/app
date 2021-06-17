@@ -61,18 +61,10 @@ export const getAuthMeTC = () => {
 export const postAuthLoginTC = (formData) => {
     return async (dispatch) => {
         await authAPI.postAuthLogin(formData).then(data => {
-            if (data.resultCode === 0) {
-                authAPI.getAuthMe().then(authData => {
-                    if (authData.resultCode === 0) {
-                        profileAPI.getProfile(authData.data.id).then(profileData => {
-                            dispatch(setProfileData(profileData));
-                        });
-                        dispatch(setUserData(authData.data, true));
-                    }
-                });
-            } else {
+            if (data.resultCode === 0)
+                dispatch(getAuthMeTC());
+            else
                 dispatch(stopSubmit("login", {_error: data.messages}));
-            }
         });
     }
 }

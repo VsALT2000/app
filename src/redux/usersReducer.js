@@ -14,32 +14,15 @@ let initialState = {
     totalUsersCount: 0,
     currentPage: 1,
     isFetching: false,
-    followingInProgress: []
+    followingInProgress: [],
 }
 
 const UsersReducer = (state = initialState, action) => {
-
     switch (action.type) {
         case FOLLOW:
-            return {
-                ...state,
-                items: state.items.map(u => {
-                    if (u.id === action.id) {
-                        return {...u, followed: true};
-                    }
-                    return u;
-                })
-            }
+            return {...state, items: state.items.map(u => u.id === action.id ? {...u, followed: true} : u)};
         case UNFOLLOW:
-            return {
-                ...state,
-                items: state.items.map(u => {
-                    if (u.id === action.id) {
-                        return {...u, followed: false};
-                    }
-                    return u;
-                })
-            }
+            return {...state, items: state.items.map(u => u.id === action.id ? {...u, followed: false} : u)};
         case SET_USERS:
             return {...state, items: action.items};
         case SET_PAGE:
@@ -68,7 +51,7 @@ const toggleIsFetching = (isFetching) => ({type: TOGGLE_IS_FETCHING, isFetching}
 const toggleFollowingInProgress = (followingInProgress, userId) => ({
     type: TOGGLE_FOLLOWING_IN_PROGRESS,
     followingInProgress,
-    userId
+    userId,
 });
 
 export const setUsersTC = (currentPage, pageSize) => {
@@ -93,14 +76,17 @@ export const updateUsersTC = (pageNumber, pageSize) => {
     }
 }
 
+const successAction = (dispatch, action, toggleInProgress, id, data) => {
+    if (data.resultCode === 0)
+        dispatch(action(id));
+    dispatch(toggleInProgress(false, id));
+}
+
 export const postFollowTC = (id) => {
     return (dispatch) => {
         dispatch(toggleFollowingInProgress(true, id));
         usersAPI.postFollow(id).then(data => {
-            if (data.resultCode === 0) {
-                dispatch(follow(id));
-            }
-            dispatch(toggleFollowingInProgress(false, id));
+            successAction(dispatch, follow, toggleFollowingInProgress, id, data);
         });
     }
 }
@@ -109,10 +95,7 @@ export const deleteFollowTC = (id) => {
     return (dispatch) => {
         dispatch(toggleFollowingInProgress(true, id));
         usersAPI.deleteFollow(id).then(data => {
-            if (data.resultCode === 0) {
-                dispatch(unfollow(id));
-            }
-            dispatch(toggleFollowingInProgress(false, id));
+            successAction(dispatch, unfollow, toggleFollowingInProgress, id, data);
         });
     }
 }

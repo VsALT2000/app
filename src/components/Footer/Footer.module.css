@@ -29,6 +29,6 @@
     color: white;
 }
 
-.contacts a:hover, .contacts_container div:hover {
+.contacts a:hover {
     color: #ff6a00;
 }
