@@ -1,8 +1,8 @@
 import {authAPI, profileAPI} from "../api/api";
 import {stopSubmit} from "redux-form";
 
-const SET_USER_DATA = "SET_USER_DATA";
-const SET_PROFILE_DATA = "GETTING_DATA_IN_PROGRESS";
+const SET_USER_DATA = "auth/SET_USER_DATA";
+const SET_PROFILE_DATA = "auth/SET_PROFILE_DATA";
 
 let initialState = {
     id: null,
@@ -45,38 +45,31 @@ const AuthReducer = (state = initialState, action) => {
 const setUserData = (data, isAuth) => ({type: SET_USER_DATA, data, isAuth});
 const setProfileData = (data) => ({type: SET_PROFILE_DATA, data});
 
-export const getAuthMeTC = () => {
-    return async (dispatch) => {
-        await authAPI.getAuthMe().then(authData => {
-            if (authData.resultCode === 0) {
-                profileAPI.getProfile(authData.data.id).then(profileData => {
-                    dispatch(setProfileData(profileData));
-                });
-                dispatch(setUserData(authData.data, true));
-            }
-        });
+export const getAuthMeTC = () =>
+    async (dispatch) => {
+        const data = await authAPI.getAuthMe()
+        if (data.resultCode === 0) {
+            profileAPI.getProfile(data.data.id).then(profileData => {
+                dispatch(setProfileData(profileData));
+            });
+            dispatch(setUserData(data.data, true));
+        }
     }
-}
 
-export const postAuthLoginTC = (formData) => {
-    return async (dispatch) => {
-        await authAPI.postAuthLogin(formData).then(data => {
-            if (data.resultCode === 0)
-                dispatch(getAuthMeTC());
-            else
-                dispatch(stopSubmit("login", {_error: data.messages}));
-        });
+export const postAuthLoginTC = (formData) =>
+    async (dispatch) => {
+        const data = await authAPI.postAuthLogin(formData)
+        if (data.resultCode === 0)
+            dispatch(getAuthMeTC());
+        else
+            dispatch(stopSubmit("login", {_error: data.messages}));
     }
-}
 
-export const deleteAuthLoginTC = () => {
-    return (dispatch) => {
-        authAPI.deleteAuthLogin().then(data => {
-            if (data.resultCode === 0) {
-                dispatch(setUserData({id: null, email: null, login: null}, false));
-            }
-        });
+export const deleteAuthLoginTC = () =>
+    async (dispatch) => {
+        const data = await authAPI.deleteAuthLogin()
+        if (data.resultCode === 0)
+            dispatch(setUserData({id: null, email: null, login: null}, false));
     }
-}
 
 export default AuthReducer;

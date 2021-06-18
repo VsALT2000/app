@@ -3,7 +3,7 @@ import Post from "./Post/Post";
 import React from "react";
 import AddPostForm from "./PostForm";
 
-const MyPosts = (props) => {
+const MyPosts = props => {
     const onSubmit = (post) => {
         let text = post.newPostBody;
         if (text && text.replace(/\s+/g, '')) {
@@ -21,6 +21,6 @@ const MyPosts = (props) => {
             </div>
         </div>
     );
-}
+};
 
-export default MyPosts;
+export default React.memo(MyPosts);

@@ -1,4 +1,4 @@
-const ADD_MESS = "ADD-MESS";
+const ADD_MESS = "messages/ADD-MESS";
 
 let initialState = {
     dialogData: [
@@ -92,11 +92,13 @@ let initialState = {
 const MessagesReducer = (state = initialState, action) => {
     switch (action.type) {
         case ADD_MESS:
-            state.messageData.forEach(m => {
-                if (m.id === action.id)
-                    m.messages.push({isYouMess: true, text: action.text});
-            });
-            return {...state, messageData: [...state.messageData]};
+            return  {
+                ...state,
+                messageData: state.messageData.map(u => u.id === action.id
+                    ? {...u, messages: [...u.messages, {isYouMess: true, text: action.text}]}
+                    : u
+                )
+            };
         default:
             return state;
     }

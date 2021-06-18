@@ -1,9 +1,10 @@
 import {profileAPI} from "../api/api";
 
-const ADD_POST = "ADD_POST";
-const TOGGLE_IS_FETCHING = "TOGGLE_IS_FETCHING";
-const SET_PROFILE = "SET_PROFILE";
-const SET_STATUS = "SET_STATUS";
+const ADD_POST = "profile/ADD_POST";
+const DELETE_POST = "profile/DELETE_POST";
+const TOGGLE_IS_FETCHING = "profile/TOGGLE_IS_FETCHING";
+const SET_PROFILE = "profile/SET_PROFILE";
+const SET_STATUS = "profile/SET_STATUS";
 
 let initialState = {
     photos: {
@@ -13,14 +14,17 @@ let initialState = {
     userId: null,
     isFetching: false,
     status: "",
+    totalCountPosts: 2,
     postsData:
         [
             {
+                postId: 1,
                 text: "Estás usando este software de traducción de forma incorrecta. Por favor, consulta el manual.",
                 countLikes: 500000,
                 isLiking: false,
             },
             {
+                postId: 2,
                 text: "So that's just what I was doing. I was just reading... ah... books. So I'm not a moron. " +
                     "Anyway. Just finished the last one. The hardest one. Machiavelli. Do not know what all the " +
                     "fuss was about. Understood it perfectly. Have you read that one?",
@@ -33,7 +37,22 @@ let initialState = {
 const ProfileReducer = (state = initialState, action) => {
     switch (action.type) {
         case ADD_POST:
-            return {...state, postsData: [...state.postsData, {text: action.text, countLikes: 0, isLiking: false}]};
+            return {
+                ...state, totalCountPosts: state.totalCountPosts + 1,
+                postsData: [...state.postsData, {
+                    postId: state.totalCountPosts + 1,
+                    text: action.text,
+                    countLikes: 0,
+                    isLiking: false
+                }]
+            };
+        case DELETE_POST:
+            return {
+                ...state,
+                postsData: state.postsData.filter(p => {
+                    if (p.postId !== action.postId) return p;
+                })
+            };
         case TOGGLE_IS_FETCHING:
             return {...state, isFetching: action.isFetching};
         case SET_PROFILE:
@@ -45,30 +64,28 @@ const ProfileReducer = (state = initialState, action) => {
     }
 }
 
-export const addPost = (text) => ({type: ADD_POST, text: text});
+export const addPost = (text) => ({type: ADD_POST, text});
+export const deletePost = (postId) => ({type: DELETE_POST, postId});
 const toggleIsFetching = (isFetching) => ({type: TOGGLE_IS_FETCHING, isFetching});
 const setProfile = (profile) => ({type: SET_PROFILE, profile});
 const setStatus = (status) => ({type: SET_STATUS, status});
 
-export const setProfileTC = (id) => (dispatch) => {
+export const setProfileTC = (id) => async (dispatch) => {
     dispatch(toggleIsFetching(true));
-    profileAPI.getProfile(id).then(data => {
-        dispatch(toggleIsFetching(false));
-        dispatch(setProfile(data));
-    });
+    const data = await profileAPI.getProfile(id)
+    dispatch(toggleIsFetching(false));
+    dispatch(setProfile(data));
 }
 
-export const getProfileStatusTC = (id) => (dispatch) => {
-    profileAPI.getStatus(id).then(data => {
-        dispatch(setStatus(data));
-    });
+export const getProfileStatusTC = (id) => async (dispatch) => {
+    const data = await profileAPI.getStatus(id)
+    dispatch(setStatus(data));
 }
 
-export const setProfileStatusTC = (status) => (dispatch) => {
-    profileAPI.putStatus(status).then(data => {
-        if (data.resultCode === 0)
-            dispatch(setStatus(status));
-    });
+export const setProfileStatusTC = (status) => async (dispatch) => {
+    const data = await profileAPI.putStatus(status)
+    if (data.resultCode === 0)
+        dispatch(setStatus(status));
 }
 
 export default ProfileReducer;

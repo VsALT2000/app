@@ -1,7 +1,8 @@
 import classes from "./Info.module.css";
 import AboutMe from "./AboutMe/AboutMe";
+import React from "react";
 
-const Info = (props) => {
+const Info = React.memo((props) => {
     return (
         <div className={classes.profile}>
             <div className={`${classes.avatar} ${classes.profile_avatar}`}>
@@ -15,6 +16,6 @@ const Info = (props) => {
             </div>
         </div>
     );
-}
+})
 
 export default Info;

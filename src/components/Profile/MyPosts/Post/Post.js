@@ -1,5 +1,6 @@
 import classes from "./Post.module.css";
 import Likes from "./Likes/Likes";
+import React from "react";
 
 const Post = (props) => {
     return (

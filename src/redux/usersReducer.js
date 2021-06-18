@@ -54,26 +54,20 @@ const toggleFollowingInProgress = (followingInProgress, userId) => ({
     userId,
 });
 
-export const setUsersTC = (currentPage, pageSize) => {
-    return async (dispatch) => {
-        dispatch(toggleIsFetching(true));
-        await usersAPI.getUsers(currentPage, pageSize).then(data => {
-            dispatch(toggleIsFetching(false));
-            dispatch(setUsers(data.items));
-            dispatch(setTotalUsersCount(data.totalCount));
-        });
-    }
+export const setUsersTC = (currentPage, pageSize) => async (dispatch) => {
+    dispatch(toggleIsFetching(true));
+    const data = await usersAPI.getUsers(currentPage, pageSize)
+    dispatch(toggleIsFetching(false));
+    dispatch(setUsers(data.items));
+    dispatch(setTotalUsersCount(data.totalCount));
 }
 
-export const updateUsersTC = (pageNumber, pageSize) => {
-    return (dispatch) => {
-        dispatch(setCurrentPage(pageNumber));
-        dispatch(toggleIsFetching(true));
-        usersAPI.getUsers(pageNumber, pageSize).then(data => {
-            dispatch(toggleIsFetching(false));
-            dispatch(setUsers(data.items));
-        });
-    }
+export const updateUsersTC = (pageNumber, pageSize) => async (dispatch) => {
+    dispatch(setCurrentPage(pageNumber));
+    dispatch(toggleIsFetching(true));
+    const data = await usersAPI.getUsers(pageNumber, pageSize)
+    dispatch(toggleIsFetching(false));
+    dispatch(setUsers(data.items));
 }
 
 const successAction = (dispatch, action, toggleInProgress, id, data) => {
@@ -82,22 +76,16 @@ const successAction = (dispatch, action, toggleInProgress, id, data) => {
     dispatch(toggleInProgress(false, id));
 }
 
-export const postFollowTC = (id) => {
-    return (dispatch) => {
-        dispatch(toggleFollowingInProgress(true, id));
-        usersAPI.postFollow(id).then(data => {
-            successAction(dispatch, follow, toggleFollowingInProgress, id, data);
-        });
-    }
+export const postFollowTC = (id) => async (dispatch) => {
+    dispatch(toggleFollowingInProgress(true, id));
+    const data = await usersAPI.postFollow(id)
+    successAction(dispatch, follow, toggleFollowingInProgress, id, data);
 }
 
-export const deleteFollowTC = (id) => {
-    return (dispatch) => {
-        dispatch(toggleFollowingInProgress(true, id));
-        usersAPI.deleteFollow(id).then(data => {
-            successAction(dispatch, unfollow, toggleFollowingInProgress, id, data);
-        });
-    }
+export const deleteFollowTC = (id) => async (dispatch) => {
+    dispatch(toggleFollowingInProgress(true, id));
+    const data = await usersAPI.deleteFollow(id)
+    successAction(dispatch, unfollow, toggleFollowingInProgress, id, data);
 }
 
 export default UsersReducer;

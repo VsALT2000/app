@@ -5,7 +5,7 @@ import {connect} from "react-redux";
 import {getProfileStatusTC, setProfileStatusTC} from "../../../../redux/profileReducer";
 import {withRouter} from "react-router-dom";
 
-const AboutMe = (props) => {
+const AboutMe = React.memo((props) => {
     const [editMode, setEditMode] = useState(false);
     const [status, setStatus] = useState(props.status);
 
@@ -43,7 +43,7 @@ const AboutMe = (props) => {
             }
         </div>
     )
-}
+})
 
 let mapStateToProps = (state) => {
     return {

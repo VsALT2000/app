@@ -11,7 +11,7 @@ import Info from "./Info/Info";
 import avatar from "../../assets/avatar.png";
 import MyPosts from "./MyPosts/MyPosts";
 
-const Profile = (props) => {
+const Profile = props => {
     const id = props.match.params.userId || props.myId;
 
     useEffect(() => {
