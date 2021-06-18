@@ -108,9 +108,6 @@ const stateData = {
     }
 }
 
-const ADD_POST = "ADD-POST";
-const ADD_MESS = "ADD-MESS";
-
 class Store {
     #state;
 
@@ -140,5 +137,5 @@ class Store {
     }
 }
 
-let store = new Store(stateData);
+const store = new Store(stateData);
 export default store;
