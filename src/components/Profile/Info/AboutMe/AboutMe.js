@@ -1,11 +1,7 @@
 import classes from "./AboutMe.module.css";
 import React, {useEffect, useState} from "react";
-import {compose} from "redux";
-import {connect} from "react-redux";
-import {getProfileStatusTC, setProfileStatusTC} from "../../../../redux/profileReducer";
-import {withRouter} from "react-router-dom";
 
-const AboutMe = React.memo((props) => {
+const AboutMe = (props) => {
     const [editMode, setEditMode] = useState(false);
     const [status, setStatus] = useState(props.status);
 
@@ -38,22 +34,11 @@ const AboutMe = React.memo((props) => {
             {
                 !editMode &&
                 <div className={classes.text} onClick={activateEditMode}>
-                    {props.status || "Change status"}
+                    <span>{props.status || "Change status"}</span>
                 </div>
             }
         </div>
     )
-})
-
-let mapStateToProps = (state) => {
-    return {
-        userId: state.profileData.userId,
-        myId: state.auth.id,
-        status: state.profileData.status,
-    }
 }
 
-export default compose(connect(mapStateToProps, {
-    getProfileStatusTC,
-    setProfileStatusTC
-}), withRouter)(AboutMe)
+export default AboutMe;

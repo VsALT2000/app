@@ -31,7 +31,8 @@ const Profile = props => {
                     <img src={headerPhoto} alt={"header"} className={classes.logo}/>
                 </div>
                 <div className={classes.content}>
-                    <Info avatar={props.photos.large || avatar} name={props.fullName}/>
+                    <Info avatar={props.photos.large || avatar} name={props.fullName} status={props.status}
+                          userId={props.userId} myId={props.myId} setProfileStatusTC={props.setProfileStatusTC}/>
                     <MyPosts postsData={props.postsData} avatar={props.photos.small || avatar} addPost={props.addPost}/>
                 </div>
             </div>
@@ -46,6 +47,7 @@ let mapStateToProps = (state) => {
         isFetching: state.profileData.isFetching,
         photos: state.profileData.photos,
         fullName: state.profileData.fullName,
+        status: state.profileData.status,
         postsData: state.profileData.postsData,
     }
 }

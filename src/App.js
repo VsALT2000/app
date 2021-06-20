@@ -2,16 +2,17 @@ import classes from "./App.module.css";
 import Footer from "./components/Footer/Footer";
 import Navigation from "./components/Navigation/Navigation";
 import ProfileContainer from "./components/Profile/Profile";
-import {Redirect, Route, Switch} from "react-router-dom";
+import {BrowserRouter, Redirect, Route, Switch} from "react-router-dom";
 import HeaderContainer from "./components/Header/Header";
 import Messages from "./components/Messages/Messages";
 import UsersContainer from "./components/Users/UsersContainer";
 import NotFound from "./components/NotFound/NotFound";
 import Login from "./components/Login/Login";
-import {connect} from "react-redux";
+import {connect, Provider} from "react-redux";
 import React from "react";
 import {initializeApp} from "./redux/appReducer";
 import Preloader from "./components/Common/Preloader/Preloader";
+import store from "./redux/redux-store";
 
 class App extends React.Component {
     componentDidMount() {
@@ -72,4 +73,14 @@ let mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, {initializeApp})(App);
+const AppContainer = connect(mapStateToProps, {initializeApp})(App);
+const ReactApp = () => {
+    return (
+        <BrowserRouter>
+            <Provider store={store}>
+                <AppContainer/>
+            </Provider>
+        </BrowserRouter>
+    )
+}
+export default ReactApp;

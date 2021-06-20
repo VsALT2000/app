@@ -1,18 +1,9 @@
 import classes from "./Users.module.css";
 import React from "react";
 import User from "./User/User";
+import Paginator from "../Common/Paginator/Paginator";
 
 const Users = (props) => {
-    const pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
-    const pages = [];
-    if (pagesCount !== 0) {
-        pages.push(1);
-        const min = Math.max(props.currentPage - 3, 2);
-        const max = Math.min(props.currentPage + 3, pagesCount);
-        for (let i = min; i < max; i++)
-            pages.push(i);
-        pages.push(pagesCount);
-    }
     return (
         <div className={classes.container}>
             <div className={classes.users}>
@@ -26,17 +17,8 @@ const Users = (props) => {
                     })
                 }
             </div>
-            <div className={classes.pages}>
-                {pages.map(p =>
-                    (
-                        <div className={props.currentPage === p && classes.selectedPage}
-                             onClick={() => {
-                                 props.onPageChanged(p)
-                             }}>
-                            <span>{p}</span>
-                        </div>
-                    ))}
-            </div>
+            <Paginator totalItemsCount={props.totalUsersCount} pageSize={props.pageSize} currentPage={props.currentPage}
+                       onPageChanged={props.onPageChanged}/>
         </div>
     )
 }
