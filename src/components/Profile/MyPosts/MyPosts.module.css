@@ -1,0 +1,41 @@
+.my_posts {
+    padding: 5px;
+}
+
+.my_posts h4 {
+    margin: 0 0 5px 0;
+}
+
+.new_post {
+    display: flex;
+    flex-direction: column;
+}
+
+.textarea {
+    height: 55px;
+    composes: textarea from "../../../App.module.css";
+}
+
+.button_container {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 5px;
+}
+
+.send_button {
+    width: 100px;
+}
+
+.posts {
+    /* Зачем, а главное зачем? */
+}
+
+.light_theme {
+}
+
+.dark_theme {
+}
+
+div.dark_theme {
+    color: white;
+}

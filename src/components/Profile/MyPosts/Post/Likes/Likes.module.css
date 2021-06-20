@@ -1,0 +1,37 @@
+.like {
+    width: 20px;
+    height: 20px;
+    padding: 0;
+    box-sizing: border-box;
+    border: 0;
+    outline: none;
+    background-position: -80px;
+}
+
+@keyframes rotate {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.like:active {
+    animation: rotate 100ms linear;
+}
+
+.icon {
+    composes: icon from "../../../../../App.module.css";
+}
+
+.liking {
+    filter: drop-shadow(0 0 5px #0096FF);
+}
+
+.count_likes {
+    margin-left: 5px;
+}
+
+.likes_container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end;
+}

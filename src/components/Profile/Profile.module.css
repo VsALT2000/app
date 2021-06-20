@@ -1,0 +1,40 @@
+.header {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    box-sizing: border-box;
+    border: 1px solid #bdbdbd;
+    border-bottom: 0;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    height: 100px;
+    width: 100%;
+    background: black;
+}
+
+.logo {
+    height: 70px;
+    composes: invertZero from "../../App.module.css";
+}
+
+.container {
+    display: grid;
+    grid-template-rows: 100px 1fr;
+    box-sizing: border-box;
+    height: 100%;
+}
+
+.content {
+    display: grid;
+    grid-template-rows: 120px 1fr;
+    box-sizing: border-box;
+    border: 1px solid #bdbdbd;
+    border-top: 0;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    background: #ffffff;
+}
+
+.container_load {
+    composes: container_load from "../../App.module.css";
+}

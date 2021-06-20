@@ -1,0 +1,49 @@
+.user {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    gap: 10px;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.avatar {
+    composes: avatar from "../../../App.module.css";
+}
+
+.profile_avatar {
+    height: 100px;
+    width: 100px;
+}
+
+.image {
+    composes: image from "../../../App.module.css";
+}
+
+.profile_info {
+    min-width: 150px;
+}
+
+.profile_info h3 {
+    margin: 0 0 10px 0;
+}
+
+.profile_info a {
+    text-decoration: none;
+    color: black;
+}
+
+.profile_info a:hover {
+    color: #ff6a00;
+}
+
+.action_container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+

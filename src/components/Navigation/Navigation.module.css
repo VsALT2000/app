@@ -1,0 +1,53 @@
+.body {
+    min-width: 120px;
+    padding: 10px 0 10px 10px;
+}
+
+.nav {
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    border: 1px solid #bdbdbd;
+    border-radius: 10px;
+    padding: 5px;
+    height: 100%;
+    background: #ffffff;
+}
+
+.nav a {
+    display: flex;
+    box-sizing: border-box;
+    border-radius: 5px;
+    padding: 5px;
+    height: 30px;
+    text-decoration: none;
+    color: black;
+}
+
+.nav a:hover {
+    background: #0096FF;
+}
+
+.icon {
+    composes: icon from "../../App.module.css";
+}
+
+.description {
+    margin-left: 5px;
+}
+
+.profile {
+    background-position: 0;
+}
+
+.messages {
+    background-position: -20px;
+}
+
+.groups {
+    background-position: -40px;
+}
+
+.music {
+    background-position: -60px;
+}
