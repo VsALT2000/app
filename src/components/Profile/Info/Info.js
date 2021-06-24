@@ -1,22 +1,117 @@
 import classes from "./Info.module.css";
-import AboutMe from "./AboutMe/AboutMe";
-import React from "react";
+import Status from "./AboutMe/Status";
+import React, {useState} from "react";
+import avatar from "../../../assets/avatar.png";
+import InfoForm from "./InfoForm";
 
 const Info = (props) => {
+    const [displayContacts, setDisplayContacts] = useState(false);
+    const [editMode, setEditMode] = useState(false);
+
+    const toggleEditMode = () => {
+        setEditMode(!editMode);
+    }
+
+    const toggleDisplayContacts = () => {
+        setDisplayContacts(!displayContacts);
+    }
+
+    const onSubmit = (formData) => {
+        props.setProfileInfoTC({
+            lookingForAJob: !!formData.lookingForAJobDescription,
+            lookingForAJobDescription: formData.lookingForAJobDescription || null,
+            aboutMe: formData.aboutMe || null,
+            fullName: formData.fullName || props.fullName,
+            contacts: {
+                github: formData.github || null,
+                vk: formData.vk || null,
+                facebook: formData.facebook || null,
+                instagram: formData.instagram || null,
+                twitter: formData.twitter || null,
+                website: formData.website || null,
+                youtube: formData.youtube || null,
+                mainLink: formData.mainLink || null,
+            },
+        }).then(() => {
+            toggleEditMode();
+        });
+    }
+
+    const onUpload = (e) => {
+        if (e.target.files.length)
+            props.setProfilePhotoTC(e.target.files[0]);
+    }
+
+    const displayContactsClass = displayContacts ? classes.contacts : classes.display_none;
+    const onHoverClass = props.isOwner ? classes.onHover : classes.display_none;
     return (
         <div className={classes.profile}>
-            <div className={`${classes.avatar} ${classes.profile_avatar}`}>
-                <img className={classes.image} src={props.avatar} alt={"avatar"}/>
+            <div>
+                <div className={classes.avatar}>
+                    <img className={classes.image} src={props.photos.large || avatar} alt={"avatar"}/>
+                    <div className={onHoverClass}>
+                        <div className={classes.avatar_settings}/>
+                        <input type="file" className={classes.input_file} onChange={onUpload}/>
+                    </div>
+                </div>
             </div>
             <div className={classes.profile_info}>
-                <h3>{props.name}</h3>
-                <AboutMe status={props.status} userId={props.userId} myId={props.myId}
-                         setProfileStatusTC={props.setProfileStatusTC}/>
-                <div>City: in progress</div>
-                <div>Education: in progress</div>
+                <h3>{props.fullName}</h3>
+                <Status isOwner={props.isOwner} status={props.status} userId={props.userId} myId={props.myId}
+                        setProfileStatusTC={props.setProfileStatusTC}/>
+                {
+                    editMode
+                        ? <InfoForm {...props} onSubmit={onSubmit} toggleDisplayContacts={toggleDisplayContacts}
+                                    displayContacts={displayContacts} displayContactsClass={displayContactsClass}
+                                    fullName={props.fullName}/>
+                        : <ProfileInfo {...props} toggleDisplayContacts={toggleDisplayContacts}
+                                       displayContacts={displayContacts} displayContactsClass={displayContactsClass}
+                                       goToEditMode={() => {setEditMode(true)}}/>
+                }
             </div>
         </div>
     );
+}
+
+const ProfileInfo = (props) => {
+    let contacts;
+    if (props.contacts)
+        contacts = Object.keys(props.contacts).filter(key => props.contacts[key]).map(key => {
+            return <Contact key={key} contactTitle={key} contactValue={props.contacts[key]}/>
+        });
+
+    return (
+        <>
+            <div>About me: {props.aboutMe}</div>
+            <div>Looking for a job: {props.lookingForAJob ? props.lookingForAJobDescription : "No"}</div>
+            <div>
+                <span className={classes.show_contacts} onClick={props.toggleDisplayContacts}>
+                    {props.displayContacts ? "Hide" : "Show"} contacts
+                </span>
+            </div>
+            <div className={props.displayContactsClass}>
+                {
+                    contacts && contacts.length !== 0
+                        ? contacts
+                        : <div>No contacts</div>
+                }
+            </div>
+            {
+                props.isOwner
+                    ? <button onClick={props.goToEditMode}>Edit</button>
+                    : null
+            }
+        </>
+    )
+}
+
+const Contact = ({contactTitle, contactValue}) => {
+    if (/https?:\/\/.*?/.exec(contactValue) === null) {
+        contactValue = "https://" + contactValue;
+    }
+    return (
+        <div><a href={contactValue} target={"_blank"}>{contactTitle}</a></div>
+    )
 }
 
 export default React.memo(Info);

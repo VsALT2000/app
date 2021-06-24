@@ -61,35 +61,33 @@ class App extends React.Component {
                     </div>
                 </Route>
             </Switch>
-    );
+        );
     }
+}
+
+let mapStateToProps = (state) => {
+    return {
+        initialized: state.app.initialized,
+        theme: state.app.theme,
+        isAuth: state.auth.isAuth,
+        email: state.auth.email,
+        login: state.auth.login,
+        id: state.auth.id,
     }
+}
 
-    let mapStateToProps = (state) =>
-        {
-            return {
-                initialized: state.app.initialized,
-                theme: state.app.theme,
-                isAuth: state.auth.isAuth,
-                email: state.auth.email,
-                login: state.auth.login,
-                id: state.auth.id,
-            }
-        }
-
-    const AppContainer = connect(mapStateToProps,
-        {
-            initializeApp
-        }
-    )(App);
-    const ReactApp = () =>
-        {
-            return (
-                <BrowserRouter>
-                    <Provider store={store}>
-                        <AppContainer/>
-                    </Provider>
-                </BrowserRouter>
-            )
-        }
-    export default ReactApp;
+const AppContainer = connect(mapStateToProps,
+    {
+        initializeApp
+    }
+)(App);
+const ReactApp = () => {
+    return (
+        <BrowserRouter>
+            <Provider store={store}>
+                <AppContainer/>
+            </Provider>
+        </BrowserRouter>
+    )
+}
+export default ReactApp;

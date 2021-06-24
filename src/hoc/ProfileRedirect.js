@@ -5,7 +5,7 @@ import {connect} from "react-redux";
 export default (Component) => {
     class RedirectComponent extends React.Component {
         render() {
-            let id = this.props.match.params.userId || this.props.myId;
+            const id = this.props.match.params.userId || this.props.myId;
             return !id ? <Redirect to={"/login"}/> : <Component {...this.props}/>;
         }
     }

@@ -1,24 +1,22 @@
-import AboutMe from "./AboutMe";
+import Status from "./Status";
 import {create} from "react-test-renderer";
 
-
-
-describe("Profile AboutMe component", () => {
+describe("Profile Status component", () => {
     test("status from props should be in the state", () => {
-        let component = create(<AboutMe status={"Hello world!"}/>)
+        let component = create(<Status status={"Hello world!"}/>)
         const root = component.root;
         const span = root.findAllByType("span");
         expect(span.length).toBe(1);
     });
 
     test("after creation <span> should be displayed", () => {
-        const component = create(<AboutMe status="Hello world!" />);
+        const component = create(<Status status="Hello world!" />);
         const root = component.root;
         let span = root.findByType("span");
         expect(span).not.toBeNull();
     });
     test("after creation <input> shouldn't be displayed", () => {
-        const component = create(<AboutMe status="Hello world!" />);
+        const component = create(<Status status="Hello world!" />);
         const root = component.root;
         expect(() => {
             root.findByType("input");
@@ -26,14 +24,14 @@ describe("Profile AboutMe component", () => {
     });
 
     test("after creation <span> should contains correct status", () => {
-        const component = create(<AboutMe status="Hello world!" />);
+        const component = create(<Status status="Hello world!" />);
         const root = component.root;
         let span = root.findByType("span");
         expect(span.children[0]).toBe("Hello world!");
     });
 
     test("input should be displayed in editMode instead of span", () => {
-        const component = create(<AboutMe status="Hello world!" />);
+        const component = create(<Status status="Hello world!" isOwner={true}/>);
         const root = component.root;
         let div = root.findByType("span").parent;
         div.props.onClick();

@@ -20,6 +20,15 @@ const LoginForm = (props) => {
             <div>
                 <Field component={CheckboxTC("rememberMe", "remember me")} name={"rememberMe"} type={"checkbox"}/>
             </div>
+            {
+                props.captchaUrl
+                    ? <div>
+                        <img src={props.captchaUrl} onClick={() => {props.getCaptchaTC()}} alt={"captcha"}/>
+                        <Field component={Input} name={"captcha"} className={classes.input_text} placeholder={"Captcha"}
+                               validate={[requiredField]}/>
+                    </div>
+                    : null
+            }
             <div>
                 <div className={classes.error_log}>{props.error}</div>
             </div>
@@ -30,4 +39,4 @@ const LoginForm = (props) => {
     );
 }
 
-export default reduxForm({ form: "login" })(LoginForm);
+export default reduxForm({form: "login"})(LoginForm);

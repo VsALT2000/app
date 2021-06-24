@@ -42,6 +42,22 @@ export const profileAPI = {
             return response.data;
         })
     },
+    async putPhoto(photo) {
+        const formData = new FormData();
+        formData.append("image", photo);
+        return await instance.put(`profile/photo`, formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        }).then(response => {
+            return response.data;
+        });
+    },
+    async putProfile(profile) {
+        return await instance.put(`profile`, profile).then(response => {
+            return response.data;
+        });
+    }
 }
 
 export const authAPI = {
@@ -57,6 +73,11 @@ export const authAPI = {
     },
     async deleteAuthLogin() {
         return await instance.delete(`auth/login`).then(response => {
+            return response.data;
+        })
+    },
+    async getCaptcha() {
+        return await instance.get(`/security/get-captcha-url`).then(response => {
             return response.data;
         })
     },

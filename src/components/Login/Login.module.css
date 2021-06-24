@@ -41,6 +41,10 @@
     max-width: 162px;
 }
 
+.form > div img {
+    width: 100%;
+}
+
 .input_text {
     height: 25px;
     composes: input_text from "../../App.module.css";

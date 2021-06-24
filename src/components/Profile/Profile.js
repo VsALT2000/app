@@ -1,6 +1,13 @@
 import React, {useEffect} from "react";
 import {connect} from "react-redux";
-import {addPost, getProfileStatusTC, setProfileStatusTC, setProfileTC} from "../../redux/profileReducer";
+import {
+    addPost,
+    getProfileStatusTC,
+    setProfileStatusTC,
+    getProfileTC,
+    setProfilePhotoTC,
+    setProfileInfoTC
+} from "../../redux/profileReducer";
 import classes from "../Profile/Profile.module.css";
 import Preloader from "../Common/Preloader/Preloader";
 import {withRouter} from "react-router-dom";
@@ -15,7 +22,7 @@ const Profile = props => {
     const id = props.match.params.userId || props.myId;
 
     useEffect(() => {
-        props.setProfileTC(id);
+        props.getProfileTC(id);
         props.getProfileStatusTC(id);
     }, [id]);
 
@@ -31,8 +38,7 @@ const Profile = props => {
                     <img src={headerPhoto} alt={"header"} className={classes.logo}/>
                 </div>
                 <div className={classes.content}>
-                    <Info avatar={props.photos.large || avatar} name={props.fullName} status={props.status}
-                          userId={props.userId} myId={props.myId} setProfileStatusTC={props.setProfileStatusTC}/>
+                    <Info {...props}/>
                     <MyPosts postsData={props.postsData} avatar={props.photos.small || avatar} addPost={props.addPost}/>
                 </div>
             </div>
@@ -44,17 +50,24 @@ let mapStateToProps = (state) => {
     return {
         userId: state.profileData.userId,
         myId: state.auth.id,
+        isOwner: state.profileData.userId === state.auth.id,
         isFetching: state.profileData.isFetching,
         photos: state.profileData.photos,
         fullName: state.profileData.fullName,
         status: state.profileData.status,
         postsData: state.profileData.postsData,
+        aboutMe: state.profileData.aboutMe,
+        lookingForAJob: state.profileData.lookingForAJob,
+        lookingForAJobDescription: state.profileData.lookingForAJobDescription,
+        contacts: state.profileData.contacts,
     }
 }
 
 export default compose(connect(mapStateToProps, {
-    setProfileTC,
+    getProfileTC,
     getProfileStatusTC,
     setProfileStatusTC,
     addPost,
+    setProfilePhotoTC,
+    setProfileInfoTC,
 }), withRouter, withProfileRedirect)(Profile)

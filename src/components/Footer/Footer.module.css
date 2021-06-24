@@ -4,7 +4,7 @@
     padding: 10px;
     box-sizing: border-box;
     height: 100px;
-    background: url("https://steamuserimages-a.akamaihd.net/ugc/560941285501338930/0DB98F0B910C039111CCCD673291D73D547D1079/") -1px 0 / 150px;
+    background: url("../../assets/backgrondHF.png") -1px 0 / 150px;
     color: white;
     composes: invertOne from "../../App.module.css";
 }
