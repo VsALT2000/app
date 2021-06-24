@@ -52,9 +52,7 @@ const ProfileReducer = (state = initialState, action) => {
         case DELETE_POST:
             return {
                 ...state,
-                postsData: state.postsData.filter(p => {
-                    if (p.postId !== action.postId) return p;
-                })
+                postsData: state.postsData.filter(p => p.postId !== action.postId)
             };
         case TOGGLE_IS_FETCHING:
             return {...state, isFetching: action.isFetching};

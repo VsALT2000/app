@@ -2,7 +2,7 @@ import {Redirect} from "react-router-dom";
 import React from "react";
 import {connect} from "react-redux";
 
-export default (Component) => {
+const withLoginRedirect = (Component) => {
     class RedirectComponent extends React.Component {
         render() {
             return !this.props.isAuth ? <Redirect to={"/login"}/> : <Component {...this.props}/>;
@@ -11,3 +11,5 @@ export default (Component) => {
 
     return connect((state) => ({isAuth: state.auth.isAuth}))(RedirectComponent);
 }
+
+export default withLoginRedirect;

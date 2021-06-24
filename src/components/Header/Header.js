@@ -13,9 +13,9 @@ class Header extends React.Component {
         styleExitMode: null,
     }
 
-    activateEditMode = () => this.setState({editMode: true, styleExitMode: classes.exit_mode});
+    activateEditMode = () => this.setState({exitMode: true, styleExitMode: classes.exit_mode});
 
-    deactivateEditMode = () => this.setState({editMode: false, styleExitMode: null});
+    deactivateEditMode = () => this.setState({exitMode: false, styleExitMode: null});
 
     onChangeTheme = () => this.props.changeTheme();
 
@@ -46,7 +46,7 @@ class Header extends React.Component {
                                 </div>
                             </div>
                             {
-                                this.state.editMode && this.props.isAuth
+                                this.state.exitMode && this.props.isAuth
                                     ? <div className={classes.exit_container}>
                                         <div onClick={this.onExit}>
                                             Exit

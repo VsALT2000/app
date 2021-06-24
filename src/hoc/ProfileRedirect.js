@@ -2,7 +2,7 @@ import {Redirect} from "react-router-dom";
 import React from "react";
 import {connect} from "react-redux";
 
-export default (Component) => {
+const withProfileRedirect = (Component) => {
     class RedirectComponent extends React.Component {
         render() {
             const id = this.props.match.params.userId || this.props.myId;
@@ -12,3 +12,5 @@ export default (Component) => {
 
     return connect((state) => ({isAuth: state.auth.isAuth}))(RedirectComponent);
 }
+
+export default withProfileRedirect;

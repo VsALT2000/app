@@ -8,12 +8,10 @@ const Users = (props) => {
         <div className={classes.container}>
             <div className={classes.users}>
                 {
-                    props.users.map(user => {
-                        return <User user={user}
-                                     postFollowTC={props.postFollowTC}
+                    props.users.map((user, i) => {
+                        return <User key={i} user={user} postFollowTC={props.postFollowTC}
                                      deleteFollowTC={props.deleteFollowTC}
-                                     followingInProgress={props.followingInProgress}
-                                     isAuth={props.isAuth}/>
+                                     followingInProgress={props.followingInProgress} isAuth={props.isAuth}/>
                     })
                 }
             </div>

@@ -17,7 +17,7 @@ const MyPosts = props => {
             <h4>My posts</h4>
             <AddPostForm onSubmit={onSubmit}/>
             <div className={classes.posts}>
-                {props.postsData.map(p => <Post avatar={props.avatar} data={p}/>)}
+                {props.postsData.map((p, i) => <Post key={i} avatar={props.avatar} data={p}/>)}
             </div>
         </div>
     );

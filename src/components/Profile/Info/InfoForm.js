@@ -4,7 +4,7 @@ import React, {useEffect, useState} from "react";
 import {requiredField} from "../../../utils/validators/validators";
 import {Input} from "../../Common/FormsControls/FormsControls";
 
-const InfoForm = (props) => {
+const InfoForm = (props) => {   //TODO: при изменении профиля если не изменить значения полей, они будут равны null, но будут отображаться в поле ввода
     let editContacts;
     if (props.contacts)
         editContacts = Object.keys(props.contacts).map(key => {
@@ -47,13 +47,15 @@ const InfoField = ({infoTitle, infoName, infoValue, validate = []}) => {
         setContact(infoValue)
     }, [infoValue]);
 
-    const changeContact = (e) => setContact(e.currentTarget.value);
+    const changeContact = (e) => {
+        setContact(e.currentTarget.value);
+    }
 
     return (
         <div className={classes.info_block}>
             <div>{infoTitle}:</div>
-            <Field component={Input} name={infoName} value={contact} className={classes.input_text}
-                   onChange={changeContact} validate={validate}/>
+            <Field component={Input} name={infoName} className={classes.input_text}
+                   onChange={changeContact} validate={validate} props={{value: contact}}/>
         </div>
     )
 }

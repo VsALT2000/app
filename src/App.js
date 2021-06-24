@@ -11,6 +11,7 @@ import React, {Suspense} from "react";
 import {initializeApp} from "./redux/appReducer";
 import Preloader from "./components/Common/Preloader/Preloader";
 import store from "./redux/redux-store";
+import cn from "classnames";
 
 const Messages = React.lazy(() => import("./components/Messages/Messages"));
 const UsersContainer = React.lazy(() => import("./components/Users/UsersContainer"));
@@ -23,7 +24,6 @@ class App extends React.Component {
     render() {
         if (!this.props.initialized)
             return <Preloader/>
-        let theme = this.props.theme === "light_theme" ? classes.light_theme : classes.dark_theme;
         return (
             <Switch>
                 <Route path={"/login"} render={() => <Login/>}/>
@@ -31,7 +31,10 @@ class App extends React.Component {
                     <Redirect to={"/login"}/>
                 </Route>
                 <Route path={"/"}>
-                    <div className={`${theme} ${classes.app_wrapper}`}>
+                    <div className={cn(classes.app_wrapper, {
+                        [classes.light_theme]: this.props.theme === "light_theme",
+                        [classes.dark_theme]: this.props.theme !== "light_theme"
+                    })}>
                         <HeaderContainer/>
                         <div className={classes.body}>
                             <Navigation id={this.props.id}/>

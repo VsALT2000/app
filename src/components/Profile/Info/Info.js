@@ -17,20 +17,23 @@ const Info = (props) => {
     }
 
     const onSubmit = (formData) => {
+        const lookingForAJobDescription = formData.lookingForAJobDescription || "No";
+        const lookingForAJob = formData.lookingForAJobDescription !== undefined;
+
         props.setProfileInfoTC({
-            lookingForAJob: !!formData.lookingForAJobDescription,
-            lookingForAJobDescription: formData.lookingForAJobDescription || null,
-            aboutMe: formData.aboutMe || null,
+            lookingForAJob: lookingForAJob,
+            lookingForAJobDescription: lookingForAJobDescription,
+            aboutMe: formData.aboutMe || "",
             fullName: formData.fullName || props.fullName,
             contacts: {
-                github: formData.github || null,
-                vk: formData.vk || null,
-                facebook: formData.facebook || null,
-                instagram: formData.instagram || null,
-                twitter: formData.twitter || null,
-                website: formData.website || null,
-                youtube: formData.youtube || null,
-                mainLink: formData.mainLink || null,
+                github: formData.github || "",
+                vk: formData.vk || "",
+                facebook: formData.facebook || "",
+                instagram: formData.instagram || "",
+                twitter: formData.twitter || "",
+                website: formData.website || "",
+                youtube: formData.youtube || "",
+                mainLink: formData.mainLink || "",
             },
         }).then(() => {
             toggleEditMode();
@@ -57,8 +60,7 @@ const Info = (props) => {
             </div>
             <div className={classes.profile_info}>
                 <h3>{props.fullName}</h3>
-                <Status isOwner={props.isOwner} status={props.status} userId={props.userId} myId={props.myId}
-                        setProfileStatusTC={props.setProfileStatusTC}/>
+                <Status isOwner={props.isOwner} status={props.status} setProfileStatusTC={props.setProfileStatusTC}/>
                 {
                     editMode
                         ? <InfoForm {...props} onSubmit={onSubmit} toggleDisplayContacts={toggleDisplayContacts}
@@ -110,7 +112,7 @@ const Contact = ({contactTitle, contactValue}) => {
         contactValue = "https://" + contactValue;
     }
     return (
-        <div><a href={contactValue} target={"_blank"}>{contactTitle}</a></div>
+        <div><a href={contactValue} target={"_blank"} rel={"noreferrer"}>{contactTitle}</a></div>
     )
 }
 

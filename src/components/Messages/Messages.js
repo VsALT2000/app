@@ -19,14 +19,14 @@ const Messages = (props) => {
     return (
         <div className={classes.container}>
             <div className={classes.dialog_items}>
-                {props.dialogData.map(d => <Dialog data={d}/>)}
+                {props.dialogData.map((d, i) => <Dialog key={i} data={d}/>)}
                 <div className={classes.after}/>
             </div>
             <Switch>
                 <Route exact path={"/messages/"} render={() => <EmptyMessageWindow/>}/>
                 {
-                    props.messageData.map((messageUser) =>
-                        <Route exact path={`/messages/${messageUser.id}`}
+                    props.messageData.map((messageUser, i) =>
+                        <Route key={i} exact path={`/messages/${messageUser.id}`}
                                render={() => <MessageConstructor addMess={props.addMess}
                                                                  messageUser={messageUser}/>}/>)
                 }
